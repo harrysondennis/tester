@@ -31,7 +31,7 @@
                                 <th scope="row">S/N</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Email Verified At</th>
+                                <th>role</th>
                                 <th>Remember Token</th>
                                 <th colspan="3">Action</th>
                             </tr>
@@ -42,7 +42,11 @@
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->email_verified_at }}</td>
+                                <td>
+                                    @foreach($user->roles as $role)
+                                    {{ $role->name}}
+                                    @endforeach
+                                </td>
                                 <td>{{ $user->remember_token }}</td>
                                 <td width="120">
                                     {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}

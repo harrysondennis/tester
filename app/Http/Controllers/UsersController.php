@@ -52,12 +52,16 @@ class UsersController extends Controller
             'password' => 'required|min:8|confirmed',
             'password_confirmation' => 'required'
         ]);
-
-        $user =new User;
+        $x = $request->role;
+        $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
+
+        $as=$user->id;
+        $ad=User::find($as);
+        $ad->assignRole($x);
 
         Flash::success('User saved successfully.');
 
