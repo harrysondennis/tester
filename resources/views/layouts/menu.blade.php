@@ -4,11 +4,13 @@
     </a>
 </li>
 
+{{-- @role("manager") --}}
 <li class="nav-item">
     <a href="{{ route('roles.index') }}">
         <p>Roles</p>
     </a>
-</li>
+</li> 
+{{-- @endrole --}}
 
 <li class="nav-item">
     <a href="{{ route('permissions.index') }}">

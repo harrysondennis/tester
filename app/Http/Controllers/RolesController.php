@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Flash;
 use Response;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RolesController extends Controller
 {
@@ -18,9 +20,10 @@ class RolesController extends Controller
     public function index()
     {
         $roles = role::orderBy('id', 'asc')->get();
+        $permissions=Permission::all();
 
-        return view('roles.index')
-            ->with('roles', $roles);
+
+        return view('roles.index',compact(['roles','permissions']));
     }
      /**
      * Show the form for creating a new resource.
@@ -29,7 +32,8 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('roles.create');
+        $permissions=Permission::all();
+        return view('roles.create',compact('permissions'));
     }
 
     /**
@@ -43,10 +47,16 @@ class RolesController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:255',
         ]);
-
+        
         $role = $request->name;
+        $permissions=$request->role_permissions;
         $guard_name = $request->guard_name;
-        Role::create(['name' => $role, 'guard_name' => $guard_name ]);
+        $a=Role::create(['name' => $role, 'guard_name' => $guard_name ]);
+
+        foreach ($permissions as $permission){
+            $permission = Permission::find($permission);
+            $a->givePermissionTo($permission);
+        }
 
         Flash::success('Role saved successfully.');
 

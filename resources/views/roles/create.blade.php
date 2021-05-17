@@ -32,13 +32,23 @@
             <div class="card-body">
 
                 <div class="row">
-                    <!-- Name Field -->
+                    <!--Role Name Field -->
                     <div class="form-group col-sm-6">
                         {!! Form::label('name', 'Name:') !!}
                         {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'required']) !!}
                     </div>
                     <div class="form-group col-sm-6">
                        <input type="hidden" value="web" name="guard_name">
+                    </div>
+                     <!-- Permission Field -->
+                     <div class="form-group col-sm-6">
+                        {!! Form::label('permission', 'Permission:') !!}
+                        <select name="role_permissions[]" id="permission" class="permission form-control" required>
+                            <option value="">select permission...</option>
+                            @foreach ($permissions as $permission)
+                            <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                 </div>

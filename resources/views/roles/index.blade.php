@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+<?php 
+    use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+?>
+
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -30,6 +36,7 @@
                             <tr>
                                 <th scope="row">S/N</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Permission</th>
                                 <th scope="col" colspan="3">Action</th>
                             </tr>
                         </thead>
@@ -38,15 +45,26 @@
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $role->name }}</td>
+                                <?php 
+                                    $role = Role::find($role->id);
+                                    $role_permissions = $role->permissions()->pluck('name')->toArray();
+                                    ?>
+                                <td>
+                                    @foreach ($role_permissions as $permission)
+                                        {{ $permission }},
+                                    @endforeach    
+                                </td>
                                 <td width="120">
                                     {!! Form::open(['route' => ['roles.destroy', $role->id], 'method' => 'delete']) !!}
                                     <div class='btn-group'>
+                                        @role("manager")
                                         <a href="{{ route('roles.show', $role->id) }}" class='btn btn-default btn-xs'>
                                             <i class="far fa-eye"></i>
                                         </a>
                                         <a href="{{ route('roles.edit', $role->id) }}" class='btn btn-default btn-xs'>
                                             <i class="far fa-edit"></i>
                                         </a>
+                                        @endrole
                                         {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                                     </div>
                                     {!! Form::close() !!}
