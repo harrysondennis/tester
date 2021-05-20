@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Reg;
 use Illuminate\Http\Request;
+use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Traits\HasRoles;
+use Flash;
+use Response;
 
 class RegController extends Controller
 {
@@ -24,7 +29,7 @@ class RegController extends Controller
      */
     public function create()
     {
-        //
+        return view('reg.create');
     }
 
     /**
@@ -35,7 +40,19 @@ class RegController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reg = new Reg;
+        $reg->firstname = $request->firstname;
+        $reg->middlename = $request->middlename;
+        $reg->surname = $request->surname;
+        $reg->gender = $request->gender;
+        $reg->dob = $request->dob;
+        $reg->phone = $request->phone;
+        
+        $reg->save();
+
+        Flash::success(' saved successfully.');
+
+        return redirect(route('reg.create'));
     }
 
     /**

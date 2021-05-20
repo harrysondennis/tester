@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Edit role</h1>
+                    <h1><i class="fa fa-users">  Edit Roles</i></h1>
                 </div>
             </div>
         </div>

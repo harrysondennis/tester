@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
 
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Flash;
 use Response;
 
@@ -103,11 +104,12 @@ class UsersController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
         ]);
-
+        
         $user->name = $request->name;
         $user->email = $request->email;
-
         $user->save();
+
+        
 
         Flash::success('User updated successfully.');
 

@@ -6,10 +6,10 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>User Details</h1>
+                    <i class="fa fa-users"><h1> Roles Details</h1></i>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
+                    <a class="btn btn-primary float-right"
                        href="{{ route('roles.index') }}">
                         Back
                     </a>

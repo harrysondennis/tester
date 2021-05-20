@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Create role</h1>
+                    <h1><i class="fa fa-users">  Create Roles</i></h1>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 <div class="row">
                     <!--Role Name Field -->
                     <div class="form-group col-sm-6">
-                        {!! Form::label('name', 'Name:') !!}
+                        {!! Form::label('name', 'Role Name:') !!}
                         {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'required']) !!}
                     </div>
                     <div class="form-group col-sm-6">

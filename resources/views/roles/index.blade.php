@@ -11,12 +11,14 @@ use Spatie\Permission\Models\Role;
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>roles</h1>
+                    <h1><i class="fa fa-users">  Roles</i></h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('roles.create') }}">
+                       <i class="fa fa-plus">
                         Add New role
+                       </i>
                     </a>
                 </div>
             </div>
@@ -57,14 +59,14 @@ use Spatie\Permission\Models\Role;
                                 <td width="120">
                                     {!! Form::open(['route' => ['roles.destroy', $role->id], 'method' => 'delete']) !!}
                                     <div class='btn-group'>
-                                        @role("manager")
+                                        
                                         <a href="{{ route('roles.show', $role->id) }}" class='btn btn-default btn-xs'>
                                             <i class="far fa-eye"></i>
                                         </a>
                                         <a href="{{ route('roles.edit', $role->id) }}" class='btn btn-default btn-xs'>
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        @endrole
+                                       
                                         {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                                     </div>
                                     {!! Form::close() !!}

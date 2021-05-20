@@ -5,12 +5,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Users</h1>
+                    <h1><i class="fa fa-user">Users</i></h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"
                        href="{{ route('users.create') }}">
+                       <i class="fa fa-plus">
                         Add New User
+                       </i>
                     </a>
                 </div>
             </div>
@@ -32,7 +34,6 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>role</th>
-                                <th>Remember Token</th>
                                 <th colspan="3">Action</th>
                             </tr>
                         </thead>

@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1><i class="fa fa-user">  Create User</i></h1>
+                    <h1>Register Person with Disability</h1>
                 </div>
             </div>
         </div>
@@ -27,17 +27,45 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'users.store']) !!}
+            {!! Form::open(['route' => 'reg.store']) !!}
 
             <div class="card-body">
 
                 <div class="row">
-                    <!-- Name Field -->
+                    <!-- Firstname Field -->
                     <div class="form-group col-sm-6">
-                        {!! Form::label('name', 'Name:') !!}
-                        {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'name','maxlength' => 255,'required']) !!}
+                        {!! Form::label('firstname', 'Firstname:') !!}
+                        {!! Form::text('firstname', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'First Name','maxlength' => 255,'required']) !!}
                     </div>
-                    
+                    <!-- Middlename Field -->
+                    <div class="form-group col-sm-6">
+                        {!! Form::label('middlename', 'Middlename:') !!}
+                        {!! Form::text('middlename', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'Middle Name','maxlength' => 255,'required']) !!}
+                    </div>
+                    <!-- Surname Field -->
+                    <div class="form-group col-sm-6">
+                        {!! Form::label('surname', 'Surname:') !!}
+                        {!! Form::text('surname', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'Surname','maxlength' => 255,'required']) !!}
+                    </div>
+                    <!-- Gender -->
+                    <div class="form-group col-sm-6">
+                        {!! Form::label('gender', 'Gender:') !!}
+                        <select name="gender" id="role" class="gender form-control">
+                            <option value="">select gender...</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <!-- Date of birth -->
+                    <div class="form-group col-sm-6">
+                        {!! Form::label('dob', 'Date of birth:') !!}
+                        {!! Form::date('dob', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'Date of Birth','maxlength' => 255,'required']) !!}
+                    </div>
+                    <!-- Phone number -->
+                    <div class="form-group col-sm-6">
+                        {!! Form::label('phone', 'Phone Number:') !!}
+                        {!! Form::text('phone', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'Phone Number','maxlength' => 255,'required']) !!}
+                    </div>
                     {{-- <div class="form-group col-sm-6">
                         {!! Form::label('permission', 'Permission:') !!}
                        <select name="" id="">
@@ -46,7 +74,7 @@
                     </div> --}}
 
                     <!-- Email Field -->
-                    <div class="form-group col-sm-6">
+                    {{-- <div class="form-group col-sm-6">
                         {!! Form::label('email', 'Email:') !!}
                         {!! Form::email('email', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'required']) !!}
                     </div>
@@ -72,7 +100,7 @@
                         {!! Form::label('password_confirmation', 'Password Confirm:') !!}
                         {!! Form::password('password_confirmation', ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
                     </div>
-                </div>
+                </div> --}}
 
             </div>
 
