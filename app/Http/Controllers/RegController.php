@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Reg;
 use Illuminate\Http\Request;
-use App\Models\Role;
+
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Flash;
 use Response;
 
@@ -19,7 +21,10 @@ class RegController extends Controller
      */
     public function index()
     {
-        //
+        $regs = reg::orderBy('id', 'asc')->get();
+
+        return view('reg.index')
+            ->with('regs', $regs);
     }
 
     /**
@@ -40,6 +45,15 @@ class RegController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'firstname' => 'required|max:255',
+            'middlename' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'gender' => 'required',
+            'dob' => 'required',
+            'phone' => 'required|max:10',
+        ]);
+
         $reg = new Reg;
         $reg->firstname = $request->firstname;
         $reg->middlename = $request->middlename;
@@ -63,7 +77,7 @@ class RegController extends Controller
      */
     public function show(Reg $reg)
     {
-        //
+        return view('reg.show')->with('reg', $reg);
     }
 
     /**
@@ -74,7 +88,7 @@ class RegController extends Controller
      */
     public function edit(Reg $reg)
     {
-        //
+        return view('reg.edit')->with('reg', $reg);
     }
 
     /**
@@ -86,7 +100,28 @@ class RegController extends Controller
      */
     public function update(Request $request, Reg $reg)
     {
-        //
+        $validated = $request->validate([
+            'firstname' => 'required|max:255',
+            'middlename' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'gender' => 'required',
+            'dob' => 'required',
+            'phone' => 'required|max:10',
+        ]);
+        
+        $reg->firstname = $request->firstname;
+        $reg->middlename = $request->middlename;
+        $reg->surname = $request->surname;
+        $reg->gender = $request->gender;
+        $reg->dob = $request->dob;
+        $reg->phone = $request->phone;
+        $reg->save();
+
+        
+
+        Flash::success('PwD updated successfully.');
+
+        return redirect(route('reg.index'));
     }
 
     /**
@@ -97,6 +132,10 @@ class RegController extends Controller
      */
     public function destroy(Reg $reg)
     {
-        //
+        $reg->delete();
+
+        Flash::success('PwD deleted successfully.');
+
+        return redirect(route('reg.index'));
     }
 }

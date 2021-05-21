@@ -413,11 +413,11 @@
             @auth
                 <a href="{{ url('/home') }}" class="btn btn-primary float-right">Home</a>
             @else
-                <a href="{{ route('login') }}" class="btn btn-primary float-right">Login</a>
+                <a href="{{ route('login') }}" type="button" class="btn btn-primary btn-lg">Login</a>
 
-                @if (Route::has('register'))
+                {{-- @if (Route::has('register'))
                     <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                @endif
+                @endif --}}
             @endauth
         </div>
     @endif

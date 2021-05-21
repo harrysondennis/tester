@@ -5,21 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Register Person with Disability</h1>
+                   <h1><i class="fa fa-user">  Edit PwD Details</i></h1>
                 </div>
             </div>
         </div>
     </section>
-
-{{-- @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif --}}
 
     <div class="content px-3">
 
@@ -27,12 +17,10 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'reg.store']) !!}
+            {!! Form::model($reg, ['route' => ['reg.update', $reg->id], 'method' => 'patch']) !!}
 
             <div class="card-body">
-
                 <div class="row">
-                    <!-- Firstname Field -->
                     <div class="form-group col-sm-6">
                         {!! Form::label('firstname', 'Firstname:') !!}
                         {!! Form::text('firstname', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'First Name','maxlength' => 255,'required']) !!}
@@ -66,50 +54,16 @@
                         {!! Form::label('phone', 'Phone Number:') !!}
                         {!! Form::text('phone', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'Phone Number','maxlength' => 255,'required']) !!}
                     </div>
-                    {{-- <div class="form-group col-sm-6">
-                        {!! Form::label('permission', 'Permission:') !!}
-                       <select name="" id="">
-                           <option value="">{{ route(per) }}</option>
-                       </select>
-                    </div> --}}
 
-                    <!-- Email Field -->
-                    {{-- <div class="form-group col-sm-6">
-                        {!! Form::label('email', 'Email:') !!}
-                        {!! Form::email('email', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'required']) !!}
-                    </div>
-
-                    <!-- Role Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('role', 'Role:') !!}
-                        <select name="role" id="role" class="role form-control">
-                            <option value="">select role...</option>
-                            @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <!-- Password Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('password', 'Password:') !!}
-                        {!! Form::password('password', ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'required']) !!}
-                    </div>
-                    <!-- Password confirm Field -->
-                    <div class="form-group col-sm-6">
-                        {!! Form::label('password_confirmation', 'Password Confirm:') !!}
-                        {!! Form::password('password_confirmation', ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-                    </div>
-                </div> --}}
-
+                </div>
             </div>
 
             <div class="card-footer">
                 {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                {{-- <a href="{{ route('users.index') }}" class="btn btn-default">Cancel</a> --}}
+                <a href="{{ route('reg.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
-            {!! Form::close() !!}
+           {!! Form::close() !!}
 
         </div>
     </div>
