@@ -22,7 +22,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = user::orderBy('id', 'asc')->get();
+        $users = user::orderBy('id', 'desc')->get();
 
         return view('users.index')
             ->with('users', $users);
@@ -88,7 +88,9 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit')->with('user', $user);
+        $roles = Role::all();
+        $user_roles = $user->roles()->get();
+        return view('users.edit', compact(['roles','user_roles']))->with('user', $user);
     }
 
     /**
@@ -104,12 +106,15 @@ class UsersController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
         ]);
-        
+
+        $x = $request->role;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
 
-        
+        $as=$user->id;
+        $ad=User::find($as);
+        $ad->assignRole($x);
 
         Flash::success('User updated successfully.');
 

@@ -37,6 +37,9 @@
                                 <th>gender</th>
                                 <th>Date of birth</th>
                                 <th>phone</th>
+                                <th>Region</th>
+                                <th>District</th>
+                                <th>Ward</th>
                                 <th colspan="3">Action</th>
                             </tr>
                         </thead>
@@ -50,6 +53,9 @@
                                 <td>{{ $reg->gender }}</td>
                                 <td>{{ $reg->dob }}</td>
                                 <td>{{ $reg->phone }}</td>
+                                <td>{{ $reg->region }}</td>
+                                <td>{{ $reg->district }}</td>
+                                <td>{{ $reg->ward }}</td>
                                 <td width="120">
                                     {!! Form::open(['route' => ['reg.destroy', $reg->id], 'method' => 'delete']) !!}
                                     <div class='btn-group'>

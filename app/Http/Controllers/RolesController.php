@@ -19,7 +19,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = role::orderBy('id', 'asc')->get();
+        $roles = role::orderBy('id', 'desc')->get();
         $permissions=Permission::all();
 
 
@@ -82,7 +82,10 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('roles.edit')->with('role', $role);
+        $permissions = Permission::all();
+        $role_permissions = $role->permissions()->get();
+
+        return view('roles.edit', compact(['permissions' , 'role', 'role_permissions']));
     }
 
     /**
@@ -94,13 +97,19 @@ class RolesController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+
         $validated = $request->validate([
             'name' => 'required|max:255',
         ]);
 
         $role->name = $request->name;
-
         $role->save();
+        // foreach($request->role_permissions as $value){
+        $permissions = $role->syncPermissions($request->role_permissions);
+        
+        
+
+
 
         Flash::success('Role updated successfully.');
 

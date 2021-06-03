@@ -53,7 +53,7 @@ use Spatie\Permission\Models\Role;
                                     ?>
                                 <td>
                                     @foreach ($role_permissions as $permission)
-                                        {{ $permission }},
+                                    <span class="badge badge-primary">{{ $permission }}</span>
                                     @endforeach    
                                 </td>
                                 <td width="120">

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,6 @@ Route::resource('roles', App\Http\Controllers\RolesController::class);
 Route::resource('permissions', App\Http\Controllers\PermissionsController::class);
 
 Route::resource('reg', App\Http\Controllers\RegController::class);
+
+Route::post("/d",[App\Http\Controllers\RegController::class, 'district'])->name('district');
+Route::post("/ward",[App\Http\Controllers\RegController::class, 'getw'])->name('ward');

@@ -21,7 +21,12 @@ class CreateRegsTable extends Migration
             $table->string('gender');
             $table->string('dob');
             $table->string('phone');
+            $table->string('region');
+            $table->string('district');
+            $table->string('ward');
             $table->timestamps();
+
+            
         });
     }
 

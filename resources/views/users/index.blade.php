@@ -45,19 +45,20 @@
                                 <td>{{ $user->email }}</td>
                                 <td>
                                     @foreach($user->roles as $role)
-                                    {{ $role->name}}
+                                    <span class="badge badge-primary">{{ $role->name}}</span>
                                     @endforeach
                                 </td>
-                                <td>{{ $user->remember_token }}</td>
                                 <td width="120">
                                     {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
                                     <div class='btn-group'>
                                         <a href="{{ route('users.show', $user->id) }}" class='btn btn-default btn-xs'>
                                             <i class="far fa-eye"></i>
                                         </a>
+
                                         <a href="{{ route('users.edit', $user->id) }}" class='btn btn-default btn-xs'>
                                             <i class="far fa-edit"></i>
                                         </a>
+
                                         {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                                     </div>
                                     {!! Form::close() !!}

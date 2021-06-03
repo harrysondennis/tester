@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>PwDRS</title>
+
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <!-- Font Awesome -->
@@ -39,7 +40,7 @@
 
           <link rel="stylesheet" type="text/css" href="{{asset('plugins\select2\css\select2.min.css')}}">
 
-
+          <meta name="csrf-token" content= "{{ csrf_token() }}" >
     {{-- <link href="css/btn.css" rel="stylesheet">
     <link href="css/hover.css" rel="stylesheet">
     <link href="css/select2-bootstrap.css" rel="stylesheet"> --}}
@@ -65,21 +66,21 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                     {{-- <img src="img/avablue.png"
                          class="user-image img-circle elevation-2" alt="User Image"> --}}
-                    <span class="d-none d-md-inline"><i class="fa fa-user">  {{ Auth::user()->name }}  <i class="fa fa-caret-down" ></i></i></span>
+                    <span class="d-none d-md-inline"><i class="fa fa-user">  <i class="fa fa-caret-down" ></i></i></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <!-- User image -->
-                    {{-- <li class="user-header bg-primary">
+                    <li class="user-header bg-primary">
                         <img src="img/avablue.png"
                              class="img-circle elevation-2"
                              alt="User Image">
                         <p>
                             {{ Auth::user()->name }}
                         </p>
-                    </li> --}}
+                    </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                        {{-- <a href="#" class="btn btn-default btn-flat">Profile</a> --}}
                         <a href="#" class="btn btn-primary btn-flat float-right"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Sign out

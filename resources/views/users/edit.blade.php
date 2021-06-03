@@ -33,6 +33,17 @@
                         {!! Form::email('email', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'required']) !!}
                     </div>
 
+                    <!-- Role Field -->
+                    <div class="form-group col-sm-6">
+                    {!! Form::label('role', 'Role:') !!}
+                        <select name="role" id="role" class="role form-control">
+                            <option value="">select role...</option>
+                            @foreach ($roles as $role)
+                            <option value="{{ $role->id }}"@if($user_roles->contains($role)) selected @endif>{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                 </div>
             </div>
 

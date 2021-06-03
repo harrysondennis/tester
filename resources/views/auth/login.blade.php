@@ -37,7 +37,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>PwDRS</b></a>
+        <a href="{{ url('/home') }}"><b>PwDRS Login</b></a>
     </div>
 
     <!-- /.login-logo -->
