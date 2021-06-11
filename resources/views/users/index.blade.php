@@ -27,13 +27,16 @@
            <div class="card">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table id="example" datatable class="table table-bordered display">
                         <thead>
                             <tr>
                                 <th scope="row">S/N</th>
-                                <th>Name</th>
+                                <th>firstname</th>
+                                <th>middlename</th>
+                                <th>surname</th>
                                 <th>Email</th>
                                 <th>role</th>
+                                <th>Status</th>
                                 <th colspan="3">Action</th>
                             </tr>
                         </thead>
@@ -41,15 +44,18 @@
                         @foreach($users as $user)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->firstname }}</td>
+                                <td>{{ $user->middlename }}</td>
+                                <td>{{ $user->surname }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
                                     @foreach($user->roles as $role)
-                                    <span class="badge badge-primary">{{ $role->name}}</span>
+                                    <span class="badge badge-primary">{{ $role->name ?? '-'}}</span>
                                     @endforeach
                                 </td>
+                                <td><span class="badge {{$user->color}}"><i>{{$user->status}}</i></span></td>
                                 <td width="120">
-                                    {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!}
+                                    {{-- {!! Form::open(['route' => ['users.destroy', $user->id], 'method' => 'delete']) !!} --}}
                                     <div class='btn-group'>
                                         <a href="{{ route('users.show', $user->id) }}" class='btn btn-default btn-xs'>
                                             <i class="far fa-eye"></i>
@@ -58,8 +64,21 @@
                                         <a href="{{ route('users.edit', $user->id) }}" class='btn btn-default btn-xs'>
                                             <i class="far fa-edit"></i>
                                         </a>
+                                        <form action="/userstatus/{{$user->id}}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('PATCH')
+                                            @if($user->status == 'disabled')
+                                            <button type="submit"  name= "set" value="active" class="btn btn-sm btn-success"><i class="fa fa-lock"></i></button>
+                                            
+                                            @else
+                                            <button type="submit"  name= "set" value="disabled" class="btn btn-sm btn-danger"><i class="fa fa-unlock"></i></button>
+                                            
+                                            {{-- @include('users.disable') --}}
+@endif
+                                            {{-- @include('users.enable') --}}
+                                        </form>
 
-                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                                        {{-- {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!} --}}
                                     </div>
                                     {!! Form::close() !!}
                                 </td>
@@ -77,5 +96,9 @@
 
     </div>
 </div>
-
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
 @endsection

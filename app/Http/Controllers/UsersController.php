@@ -12,6 +12,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Flash;
 use Response;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -48,16 +49,19 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|max:255',
+            'firstname' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'middlename' => 'required|max:255',
             'email' => 'required|unique:users|max:255',
-            'password' => 'required|min:8|confirmed',
-            'password_confirmation' => 'required'
         ]);
         $x = $request->role;
         $user = new User;
-        $user->name = $request->name;
+        $user->firstname = $request->firstname;
+        $user->middlename = $request->middlename;
+        $user->surname = $request->surname;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->password = Hash::make(strtoupper(trim(str_replace(' ', '', $request->surname))));
+        $user->status = "active";
         $user->save();
 
         $as=$user->id;
@@ -103,12 +107,16 @@ class UsersController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name' => 'required|max:255',
+            'firstname' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'middlename' => 'required|max:255',
             'email' => 'required|email|max:255',
         ]);
 
         $x = $request->role;
-        $user->name = $request->name;
+        $user->firstname = $request->firstname;
+        $user->middlename = $request->middlename;
+        $user->surname = $request->surname;
         $user->email = $request->email;
         $user->save();
 
@@ -135,4 +143,32 @@ class UsersController extends Controller
 
         return redirect(route('users.index'));
     }
+
+
+  Public function UpdatePassword(Request $request){
+
+    $user=Auth::User();
+    $matched = Hash::check($request->old_password,$user->password);
+    if($matched){
+        if($request->new_password==$request->confirm_password){
+            $user->password=Hash::make($request->new_password);
+            $user->save();
+
+           //return  view('views.department')->with('success','Password changed Successfully');
+            // return back()->with('success','Password changed Successfully');
+            Flash::success('Password changed Successfully');
+
+            return redirect()->back();
+        }
+        // return back()->with('error','your new passwords dont match');
+        Flash::success('your new passwords dont match');
+        return redirect()->back();
+    }else{
+        // return back()->with('error','old password not correct');
+        Flash::success('old password not correct');
+        return redirect()->back();
+    }
+
+  }
+
 }

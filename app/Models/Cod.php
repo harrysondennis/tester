@@ -5,10 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Permission extends Model
+class Cod extends Model
 {
     use HasFactory;
     
     protected $guarded = [ ];
-}
 
+    public function reg(){
+        return $this->belongsTo(Reg::class);
+    }
+
+    public function tod(){
+        return $this->belongsTo(Tod::class);
+    }
+}

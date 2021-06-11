@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Tod;
+use App\Models\Cod;
 
 class Reg extends Model
 {
@@ -15,13 +17,10 @@ class Reg extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'firstname',
-        'middlename',
-        'surname',
-        'gender',
-        'dob',
-        
-    ];
+    protected $guarded = [ ];
+
+    public function cods(){
+        return $this->hasMany(Cod::class);
+    }
 
 }

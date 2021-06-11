@@ -14,7 +14,7 @@ class CreateRegsTable extends Migration
     public function up()
     {
         Schema::create('regs', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('firstname');
             $table->string('middlename');
             $table->string('surname');
@@ -24,6 +24,8 @@ class CreateRegsTable extends Migration
             $table->string('region');
             $table->string('district');
             $table->string('ward');
+            $table->unsignedBigInteger('cod_id');
+            $table->foreign('cod_id')->references('id')->on('cods')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
 
             

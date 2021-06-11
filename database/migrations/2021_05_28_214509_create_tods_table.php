@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCodsTable extends Migration
+class CreateTodsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cods', function (Blueprint $table) {
+        Schema::create('tods', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('tod_id');
-            $table->foreign('tod_id')->references('id')->on('tods')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateCodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cods');
+        Schema::dropIfExists('tods');
     }
 }

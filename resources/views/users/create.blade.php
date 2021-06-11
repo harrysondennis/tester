@@ -30,12 +30,23 @@
             {!! Form::open(['route' => 'users.store']) !!}
 
             <div class="card-body">
+            
 
                 <div class="row">
-                    <!-- Name Field -->
+                     <!-- Firstname Field -->
+                     <div class="form-group col-sm-6">
+                        {!! Form::label('firstname', 'Firstname:') !!}
+                        {!! Form::text('firstname', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'First Name','maxlength' => 255,'required']) !!}
+                    </div>
+                    <!-- Middlename Field -->
                     <div class="form-group col-sm-6">
-                        {!! Form::label('name', 'Name:') !!}
-                        {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'name','maxlength' => 255]) !!}
+                        {!! Form::label('middlename', 'Middlename:') !!}
+                        {!! Form::text('middlename', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'Middle Name','maxlength' => 255,'required']) !!}
+                    </div>
+                    <!-- Surname Field -->
+                    <div class="form-group col-sm-6">
+                        {!! Form::label('surname', 'Surname:') !!}
+                        {!! Form::text('surname', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'Surname','maxlength' => 255,'required']) !!}
                     </div>
                     
                     {{-- <div class="form-group col-sm-6">
@@ -48,7 +59,7 @@
                     <!-- Email Field -->
                     <div class="form-group col-sm-6">
                         {!! Form::label('email', 'Email:') !!}
-                        {!! Form::email('email', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
+                        {!! Form::email('email', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'example@gmail.com','maxlength' => 255]) !!}
                     </div>
 
                     <!-- Role Field -->
@@ -62,7 +73,7 @@
                         </select>
                     </div>
 
-                    <!-- Password Field -->
+                    {{-- <!-- Password Field -->
                     <div class="form-group col-sm-6">
                         {!! Form::label('password', 'Password:') !!}
                         {!! Form::password('password', ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
@@ -71,7 +82,7 @@
                     <div class="form-group col-sm-6">
                         {!! Form::label('password_confirmation', 'Password Confirm:') !!}
                         {!! Form::password('password_confirmation', ['class' => 'form-control','maxlength' => 255,'maxlength' => 255]) !!}
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>

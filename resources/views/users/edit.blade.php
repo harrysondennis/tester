@@ -21,10 +21,19 @@
 
             <div class="card-body">
                 <div class="row">
-                    <!-- Name Field -->
                     <div class="form-group col-sm-6">
-                        {!! Form::label('name', 'Name:') !!}
-                        {!! Form::text('name', null, ['class' => 'form-control','maxlength' => 255,'maxlength' => 255,'required']) !!}
+                        {!! Form::label('firstname', 'Firstname:') !!}
+                        {!! Form::text('firstname', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'First Name','maxlength' => 255,'required']) !!}
+                    </div>
+                    <!-- Middlename Field -->
+                    <div class="form-group col-sm-6">
+                        {!! Form::label('middlename', 'Middlename:') !!}
+                        {!! Form::text('middlename', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'Middle Name','maxlength' => 255,'required']) !!}
+                    </div>
+                    <!-- Surname Field -->
+                    <div class="form-group col-sm-6">
+                        {!! Form::label('surname', 'Surname:') !!}
+                        {!! Form::text('surname', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'Surname','maxlength' => 255,'required']) !!}
                     </div>
 
                     <!-- Email Field -->

@@ -31,15 +31,14 @@
                         <thead>
                             <tr>
                                 <th scope="row">S/N</th>
-                                <th>firstname</th>
-                                <th>middlename</th>
-                                <th>surname</th>
+                                <th>fullname</th>
                                 <th>gender</th>
                                 <th>Date of birth</th>
                                 <th>phone</th>
                                 <th>Region</th>
                                 <th>District</th>
                                 <th>Ward</th>
+                                <th>category of disability</th>
                                 <th colspan="3">Action</th>
                             </tr>
                         </thead>
@@ -47,15 +46,14 @@
                         @foreach($regs as $reg)
                             <tr>
                                 <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $reg->firstname }}</td>
-                                <td>{{ $reg->middlename }}</td>
-                                <td>{{ $reg->surname }}</td>
+                                <td>{{ $reg->firstname }} {{ $reg->middlename }} {{ $reg->surname }}</td>
                                 <td>{{ $reg->gender }}</td>
                                 <td>{{ $reg->dob }}</td>
                                 <td>{{ $reg->phone }}</td>
                                 <td>{{ $reg->region }}</td>
                                 <td>{{ $reg->district }}</td>
                                 <td>{{ $reg->ward }}</td>
+                                <td>{{ $reg->name }}</td>
                                 <td width="120">
                                     {!! Form::open(['route' => ['reg.destroy', $reg->id], 'method' => 'delete']) !!}
                                     <div class='btn-group'>

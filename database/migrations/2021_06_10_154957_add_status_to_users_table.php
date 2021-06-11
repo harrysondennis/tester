@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTodsTable extends Migration
+class AddStatusToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateTodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tods', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('status');
         });
     }
 
@@ -27,6 +25,9 @@ class CreateTodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tods');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('status');
+            
+        });
     }
 }

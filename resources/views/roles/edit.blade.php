@@ -31,7 +31,7 @@
                      <div class="form-group col-sm-6">
                         <div class="form-wrapper">
                        {!! Form::label('permission', 'Permission:') !!}
-                       <select class="form-control select2" name="role_permissions[]" id="permission"  multiple="multiple" required="">
+                       <select class="form-control select2" style="color: black" name="role_permissions[]" id="permission"  multiple="multiple" required="">
                            <option value="">select permission...</option>
                            @foreach ($permissions as $permission)
                            <option value="{{ $permission->id }}" @if($role_permissions->contains($permission)) selected @endif>{{ $permission->name }}</option>

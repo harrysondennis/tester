@@ -18,12 +18,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'role',
-        'password',
-    ];
+    protected $guarded = [ ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -43,4 +38,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getColorAttribute(){
+        switch ($this->status) {
+            case 'active' :
+                return 'badge-success';
+                break;
+
+            case 'disabled' :
+                return 'badge-danger';
+                break;
+
+            // default:
+
+        }
+    }  
 }

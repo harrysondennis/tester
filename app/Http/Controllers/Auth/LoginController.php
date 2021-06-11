@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -37,4 +38,17 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function credentials(Request $request)
+    {
+        // $credentials =  $request->only($this->email(), 'password');
+        $email = $request->email;
+        $password = $request->password;
+
+        // $credentials['status'] = 'active';
+
+        return ['email' => $email, 'password' => $password, 'status' => 'active'];
+
+    }
+
 }

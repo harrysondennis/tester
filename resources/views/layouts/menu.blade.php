@@ -32,5 +32,13 @@
     <a href="{{ route('reg.index') }}">
         <button class="btn btn-outline-secondary btn-block border border-0 float-left"><i class="fa fa-list-ul float-left" style="color: white">  REGISTERED PwD</i></button>
         <p></p>
+        
+    </a>
+</li>
+<p></p>
+<li class="nav-item">
+    <a href="/changes">
+        <button class="btn btn-outline-secondary btn-block border border-0 float-left"><i class="fa fa-key float-left" style="color: white">  CHANGE PASSWORD </i></button>
+        <p></p>
     </a>
 </li>

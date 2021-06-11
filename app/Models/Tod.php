@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Reg;
 
-class Permission extends Model
+class Tod extends Model
 {
     use HasFactory;
-    
-    protected $guarded = [ ];
-}
 
+    public function cods(){
+        return $this->hasMany(Cod::class);
+    }
+}

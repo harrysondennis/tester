@@ -45,14 +45,42 @@
 
                 <div class="input-group mb-3">
                     <input type="text"
-                           name="name"
-                           class="form-control @error('name') is-invalid @enderror"
-                           value="{{ old('name') }}"
-                           placeholder="Full name">
+                           name="firstname"
+                           class="form-control @error('firstname') is-invalid @enderror"
+                           value="{{ old('firstname') }}"
+                           placeholder="firstname">
                     <div class="input-group-append">
                         <div class="input-group-text"><span class="fas fa-user"></span></div>
                     </div>
-                    @error('name')
+                    @error('firstname')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="text"
+                           name="middlename"
+                           class="form-control @error('firstname') is-invalid @enderror"
+                           value="{{ old('middlename') }}"
+                           placeholder="middlename">
+                    <div class="input-group-append">
+                        <div class="input-group-text"><span class="fas fa-user"></span></div>
+                    </div>
+                    @error('middlename')
+                    <span class="error invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="text"
+                           name="surname"
+                           class="form-control @error('firstname') is-invalid @enderror"
+                           value="{{ old('surname') }}"
+                           placeholder="surname">
+                    <div class="input-group-append">
+                        <div class="input-group-text"><span class="fas fa-user"></span></div>
+                    </div>
+                    @error('surname')
                     <span class="error invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -71,7 +99,7 @@
                     @enderror
                 </div>
 
-                <div class="input-group mb-3">
+                {{-- <div class="input-group mb-3">
                     <input type="password"
                            name="password"
                            class="form-control @error('password') is-invalid @enderror"
@@ -92,7 +120,7 @@
                     <div class="input-group-append">
                         <div class="input-group-text"><span class="fas fa-lock"></span></div>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="row">
                     <div class="col-8">

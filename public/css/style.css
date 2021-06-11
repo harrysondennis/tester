@@ -228,3 +228,11 @@ th, td{
         margin-left: .8em;
     }
 }
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #007bff;
+    border-color: #006fe6;
+    color: #0d0c0c !important;
+    padding: 0 10px;
+    margin-top: .31rem;
+}

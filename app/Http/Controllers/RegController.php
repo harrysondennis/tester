@@ -7,6 +7,8 @@ use App\Models\Reg;
 use App\Models\Region;
 use App\Models\District;
 use App\Models\Ward;
+use App\Models\Cod;
+use App\Models\Tod;
 
 use Illuminate\Http\Request;
 use DB;
@@ -26,8 +28,8 @@ class RegController extends Controller
      */
     public function index()
     {
-        $regs = reg::orderBy('id', 'desc')->get();
-        
+        // $regs = reg::orderBy('id', 'desc')->get();
+        $regs = DB::table('regs')->join('cods', 'regs.cod_id', '=' , 'cods.id')->select('*')->get();
        
 
 
@@ -42,7 +44,8 @@ class RegController extends Controller
     public function create()
     {
         $regions=Region::all();
-        return view('reg.create',compact('regions'));
+        $data =DB::table("tods")->select('id','name')->get();
+        return view('reg.create',compact('regions','data'));
     }
 
     /**
@@ -65,7 +68,10 @@ class RegController extends Controller
         $region_name = Region::where('region_code' , $request->region)->first();
         $district_name = District::where('district_code' , $request->district)->first();
         $ward_name = Ward::where('ward_code' , $request->ward)->first();
-
+        // $tod_name = Tod::where('id' , $request->tod)->first();
+        // $cod_name = Cod::where('id' , $request->cod)->first();
+        
+        
         $reg = new Reg;
         $reg->firstname = $request->firstname;
         $reg->middlename = $request->middlename;
@@ -73,10 +79,11 @@ class RegController extends Controller
         $reg->gender = $request->gender;
         $reg->dob = $request->dob;
         $reg->phone = $request->phone;
-        $reg->phone = $request->phone;
         $reg->region = $region_name->name;
-        $reg->district =   $district_name->name;
-        $reg->ward =  $ward_name->name;
+        $reg->district =   (strtolower($district_name->name));
+        $reg->ward =  (strtolower($ward_name->name));
+        $reg->cod_id =  $request->cod;
+        
         $reg->save();
 
         Flash::success(' saved successfully.');
@@ -158,6 +165,7 @@ class RegController extends Controller
              $reg_id =  $request->post("dist");
     
          $data =DB::table("districts")->select('district_code','name')->where("region_code",$reg_id)->get();
+        //  $data =DB::table("districts")->select('district_code','name')->where("region_code",$reg_id)->get();
 
         return Response::json($data);
     }
@@ -167,5 +175,21 @@ class RegController extends Controller
 
     return Response::json($data);
     }
+
+    public function cod(Request $request){
+        //$tod_id =
+
+        foreach($request->cod_code as $key => $value){
+    $data[]=DB::table("cods")->select('name','id')->where("tod_id",$request->cod_code[$key])->get();
+        }
+    
+    return Response::json($data);
+    }
+
+
+
+
+
+
 
 }
