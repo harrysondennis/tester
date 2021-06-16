@@ -45,7 +45,7 @@
                     <!-- Role Field -->
                     <div class="form-group col-sm-6">
                     {!! Form::label('role', 'Role:') !!}
-                        <select name="role" id="role" class="role form-control">
+                        <select name="role" id="role" class="form-control">
                             <option value="">select role...</option>
                             @foreach ($roles as $role)
                             <option value="{{ $role->id }}"@if($user_roles->contains($role)) selected @endif>{{ $role->name }}</option>

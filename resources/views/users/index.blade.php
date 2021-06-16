@@ -26,8 +26,10 @@
         <div class="clearfix"></div>
            <div class="card">
             <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table id="example" datatable class="table table-bordered display">
+                {{-- <h6>{{ $no_of_users }}</h6> --}}
+                <div class="table-responsive">                       
+                    <table id="example" style="width:100%" class="table table-bordered display">
+                        {{-- <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info"> --}}
                         <thead>
                             <tr>
                                 <th scope="row">S/N</th>
@@ -37,7 +39,7 @@
                                 <th>Email</th>
                                 <th>role</th>
                                 <th>Status</th>
-                                <th colspan="3">Action</th>
+                                <th colspan="4">Action</th>
                             </tr>
                         </thead>
                         <tbody>

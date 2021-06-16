@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Register Person with Disability</h1>
+                    <h1><i class="fa fa-wheelchair">Register Person with Disability</i></h1>
                 </div>
             </div>
         </div>
@@ -30,7 +30,8 @@
         <div class="card">
 
       {{-- {!! Form::open(['route' => 'reg.store']) !!} --}}
-<form  method="POST"   action="{{ route('reg.store') }}" id="selectform" data-district-url="{{ route('district') }}"
+{{-- <form  method="POST"   action="{{ route('reg.store') }}" id="selectform" data-district-url="{{ route('district') }}" data-ward-url="{{ route('ward') }}" > --}}
+    <form  method="POST"   action="{{ route('reg.store') }}" id="selectform" data-district-url="{{ route('district') }}"
 data-district-cod="{{ route('cod') }}"
 data-ward-url="{{ route('ward') }}" >
     @csrf       
@@ -69,7 +70,7 @@ data-ward-url="{{ route('ward') }}" >
                     <!-- Phone number -->
                     <div class="form-group col-sm-6">
                         {!! Form::label('phone', 'Phone Number:') !!}
-                        {!! Form::text('phone', null, ['class' => 'form-control','minlength' => 10,'placeholder' => ' eg.0789...','maxlength' => 10,'required']) !!}
+                        {!! Form::text('phone', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'Phone Number','maxlength' => 255,'required']) !!}
                     </div>
                     <!-- Region -->
                     <div class="form-group col-sm-6">                    
@@ -95,11 +96,10 @@ data-ward-url="{{ route('ward') }}" >
                             <option value="ward">select ward...</option>                 
                         </select>
                     </div> 
-                    <!-- Type of disability -->
-                    <div class="form-group col-sm-6">            
+                     <!-- Type of disability -->
+                     <div class="form-group col-sm-6">            
                         {!! Form::label('tod', 'Type Of Disability:') !!}
-                        <select class="form-control select2" name="tod[]" id="tod" multiple="multiple"class="tod-id" >
-                            <option value="">select Type Of Disability...</option>   
+                        <select class="form-control select2" name="tod[]" data-placeholder="Select Type Of Disability" id="tod" multiple="multiple"class="tod-id" >  
                             @foreach ($data as $data)
                             <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach
@@ -109,8 +109,7 @@ data-ward-url="{{ route('ward') }}" >
                     <!-- category of disability -->
                     <div class="form-group col-sm-6">            
                         {!! Form::label('cod', 'Category Of Disability:') !!}
-                        <select class="form-control  select2" name="cod" id="cod" multiple="multiple">
-                            <option value="">Select Category Of Disability...</option>                 
+                        <select class="form-control  select2" data-placeholder="Select Category Of Disability" name="cod[]" id="cod" multiple="multiple">                
                         </select>
                     </div>
             </div>
@@ -126,60 +125,6 @@ data-ward-url="{{ route('ward') }}" >
     </div>
 @endsection
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function(){
-        $("#tod").on('change',function (e) {
-            e.preventDefault();
-            const proid = [];
-            var url = $("#selectform").attr("data-district-cod");
-            
-            $('#tod').each(function(){
-       
-    proid.push($(this).val());
-    
-    }),
-    $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: {
-                    'cod_code': proid
-                    
-                },
-                success: function (response) {
-                    console.log(response);
-                  //  $("#cod").empty();
-                     $("#cod").append('<option value="">-- Select Category of disability --</option>');
-                     response.forEach(element=>{
-                          $('#cod').append(`<option value="${element['id']}">${element['name']} </option>`);
-                     });
-        
-           }
-          
-        });
-    })
-    });
-
-   
-    </script>
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
    
 $(document).ready(function(){
@@ -202,7 +147,7 @@ $(document).ready(function(){
             },
             success: function (response) {
               
-               console.log("lukelo");
+               console.log("");
                 $("#district").empty();
                 $("#district").append('<option value="">-- Select District --</option>');
                 response.forEach(element=>{
@@ -249,38 +194,63 @@ $(document).ready(function(){
     });
     </script>
 
+    
 
-//   <script>
+   <script>
    
-//     $(document).ready(function(){
-//         $("#tod").on('change',function () {
-//             var url = $("#selectform").attr("data-district-cod");
-//             $("#cod").empty();
-//             var data = $(this).val();
-//             console.log(data);
-//             $.ajaxSetup({
-//                 headers: {
-//                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//                 }
-//             });
-//             $.ajax({
-//                 type: "POST",
-//                 url: url,
-//                 data: {
-//                     'cod_code': data
-                    
-//                 },
-//                 success: function (response) {
-                  
-//                    console.log("yo");
-//                     $("#cod").empty();
-//                     $("#cod").append('<option value="">-- Select Category of disability --</option>');
-//                     response.forEach(element=>{
-//                          $('#cod').append(`<option value="${element['id']}">${element['name']} </option>`);
-//                     });
-//                 }
-//             });
-//         })
-//     });
-//      </script>
-     
+    $(document).ready(function(){
+        let q
+        $("#tod").on('change',function () {
+            var url = $("#selectform").attr("data-district-cod");
+            $("#cod").empty();
+            var data = $(this).val();
+            //console.log(data);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        //     $.ajax({
+        //         type: "POST",
+        //         url: url,
+        //         data: {
+        //             'cod_code': data
+                   
+        //         },
+        //         success: function (response) {
+                 
+        //            console.log(response);
+        //             $("#cod").empty();
+        //             $("#cod").append('<option value="">-- Select Category of disability --</option>');
+        //             response.forEach(element=>{
+        //                  $('#cod').append(`<option value="${element['id']}">${element['name']} </option>`);
+        //             });
+        //         }
+        //    });
+
+        //  $.get('/cod',function(data){
+        //    console.log(data);
+        //  })
+
+        $.ajax({
+            url: "/cod",
+            type: "get", //send it through get method
+            data: { 
+                data: data, 
+            },
+            success: function(response) {
+                   console.log(response);
+                    $("#cod").empty();
+                    $("#cod").append('<option value="" selected>-- Select Category of disability --</option>');
+                    response.forEach(element=>{
+                        console.log(element);
+                         $('#cod').append(`<option value="${element['id']}">${element['name']} </option>`);
+                    });
+            },
+            error: function(xhr) {
+                console.log('error');
+            }
+            });
+        })
+    });
+     </script>

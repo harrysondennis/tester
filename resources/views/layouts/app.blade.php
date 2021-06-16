@@ -19,8 +19,8 @@
           integrity="sha512-rVZC4rf0Piwtw/LsgwXxKXzWq3L0P6atiQKBNuXYRbg2FoRbSTIY0k2DxuJcs7dk4e/ShtMzglHKBOJxW8EQyQ=="
           crossorigin="anonymous"/>
         
-  
-
+{{--     
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"> --}}
   
         {{-- <link rel="stylesheet" type="text/css" href="{{asset('select2-bootstrap/select2-bootstrap.min.css')}}"> --}}
     
@@ -38,18 +38,14 @@
           integrity="sha512-aEe/ZxePawj0+G2R+AaIxgrQuKT68I28qh+wgLrcAJOz3rxCP+TwrK5SPN+E5I+1IQjNtcfvb96HDagwrKRdBw=="
           crossorigin="anonymous"/>
 
-          <!----------------datatable----------------------->
-          <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-  
-
-
           <link rel="stylesheet" type="text/css" href="{{asset('plugins\select2\css\select2.min.css')}}">
-          <link rel="stylesheet" type="text/css" href="{{asset('css\app.css')}}">
+
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+         
 
           <meta name="csrf-token" content= "{{ csrf_token() }}" >
-    {{-- <link href="css/btn.css" rel="stylesheet">
-    <link href="css/hover.css" rel="stylesheet">
-    <link href="css/select2-bootstrap.css" rel="stylesheet"> --}}
+   
+
 
     @yield('third_party_stylesheets')
 
@@ -70,9 +66,9 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                    {{-- <img src="img/avablue.png"
-                         class="user-image img-circle elevation-2" alt="User Image"> --}}
-                    <span class="d-none d-md-inline"><i class="fa fa-user">{{ Auth::user()->firstname }}  <i class="fa fa-caret-down" ></i></i></span>
+                    <img src="img/avablue.png"
+                         class="user-image img-circle elevation-2" alt="User Image">
+                    <span class="d-none d-md-inline"> <i class="fa fa-caret-down" ></i></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <!-- User image -->
@@ -81,7 +77,7 @@
                              class="img-circle elevation-2"
                              alt="User Image">
                         <p>
-                            {{ Auth::user()->name }}
+                           Logged in: {{ Auth::user()->firstname }}
                         </p>
                     </li>
                     <!-- Menu Footer-->
@@ -115,9 +111,10 @@
         <strong>Copyright &copy; 2021 <a href="#">PwDRS</a>.</strong> All rights reserved.
     </footer>
 </div>
-{ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+<script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
         integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-        crossorigin="anonymous"></script> 
+        crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" 
@@ -147,19 +144,18 @@
 {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"
         integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A=="
         crossorigin="anonymous"></script> --}}
+
+
       
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js" integrity="sha512-J+763o/bd3r9iW+gFEqTaeyi+uAphmzkE/zU8FxY6iAvD3nQKXa+ZAWkBI9QS9QkYEKddQoiy0I5GDxKf/ORBA==" crossorigin="anonymous"></script>
 
+
+
 <script src="{{asset('plugins\select2\js\select2.min.js')}}" type="text/javascript"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-
-{{-- <scrip>
-    $(document).ready(function() {
-    $('#example').DataTable();
-} );
-</scrip> --}}
+{{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script> --}}
+{{-- <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="DataTables/js/dataTables.min.js"></script> --}}
 
 <script>
     $(function () {
@@ -171,13 +167,19 @@
     });
 
     $('.select2').select2();
-</scrip>
+</script>
 
 <script>
     $("#position").select2({
     allowClear:true,
     placeholder: 'Position'
     });
+</script>
+datatable
+<script>
+    $(document).ready( function () {
+    $('#example').DataTable();
+} );
 </script>
 
 @yield('third_party_scripts')

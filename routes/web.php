@@ -38,6 +38,8 @@ Route::resource('permissions', App\Http\Controllers\PermissionsController::class
 
 Route::resource('reg', App\Http\Controllers\RegController::class);
 
+Route::resource('dashboard', App\Http\Controllers\DashboardController::class);
+
 Route::resource('/userstatus', App\Http\Controllers\UserStatusController::class);
 
 Route::post("/d",[App\Http\Controllers\RegController::class, 'district'])->name('district');
@@ -47,3 +49,5 @@ Route::post("/ward",[App\Http\Controllers\RegController::class, 'getw'])->name('
 Route::post("/cod",[App\Http\Controllers\RegController::class,'cod'])->name('cod');
 
 Route::post('/changePassword', [App\Http\Controllers\UsersController::class, 'updatePassword']);
+
+Route::get("/cod",[App\Http\Controllers\RegController::class,'cod2']);

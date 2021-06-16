@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Create permission</h1>
+                    <h1><i class="fa fa-unlock-alt"> Create permission</i></h1>
                 </div>
             </div>
         </div>

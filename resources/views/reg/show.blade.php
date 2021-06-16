@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <i class="fa fa-user"><h1>  Person with disability Details</h1></i>
+                    <h1><i class="fa fa-wheelchair"> Person with disability Details</i></h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-default float-right"

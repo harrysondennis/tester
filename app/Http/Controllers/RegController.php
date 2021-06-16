@@ -176,16 +176,33 @@ class RegController extends Controller
     return Response::json($data);
     }
 
-    public function cod(Request $request){
-        //$tod_id =
-
-        foreach($request->cod_code as $key => $value){
-    $data[]=DB::table("cods")->select('name','id')->where("tod_id",$request->cod_code[$key])->get();
-        }
+//     public function cod(Request $request){
     
-    return Response::json($data);
+// $z=[];
+//         foreach($request->post('cod_code') as $key => $value){
+//     $data[]=DB::table("cods")->select('name','id')->where("tod_id",$request->cod_code[$key])->get();
+//     array_push($z,$data);      
+// }
+  
+//     return Response::json($z);
+//     }
+
+    public function cod(Request $request){
+      $z=[];
+      $val = $request->cod_code;
+        foreach($val as $key=>$value){
+           array_push($z,[$value]); 
+        }
+    return $data = Cod::all();
+
+    // return Response::json($z);
     }
 
+    public function cod2(Request $request){
+       $val = $request->data;
+       $data = Cod::whereIn('tod_id',$val)->get();
+       return Response::json($data);
+      }
 
 
 

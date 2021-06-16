@@ -11,6 +11,8 @@ class Cod extends Model
     
     protected $guarded = [ ];
 
+    protected $table = 'cods';
+
     public function reg(){
         return $this->belongsTo(Reg::class);
     }

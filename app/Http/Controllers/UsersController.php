@@ -23,10 +23,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = user::orderBy('id', 'desc')->get();
-
-        return view('users.index')
-            ->with('users', $users);
+        $users = User::orderBy('id', 'desc')->get();
+        $no_of_users = User::all()->count();
+        return view('users.index', compact(['users','no_of_users']));
     }
 
     /**
@@ -161,11 +160,11 @@ class UsersController extends Controller
             return redirect()->back();
         }
         // return back()->with('error','your new passwords dont match');
-        Flash::success('your new passwords dont match');
+        Flash::error('your new passwords dont match');
         return redirect()->back();
     }else{
         // return back()->with('error','old password not correct');
-        Flash::success('old password not correct');
+        Flash::error('old password not correct');
         return redirect()->back();
     }
 
