@@ -27,7 +27,7 @@
            <div class="card">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-sm">
                         <thead>
                             <tr>
                                 <th scope="row">S/N</th>
@@ -53,7 +53,11 @@
                                 <td>{{ $reg->region }}</td>
                                 <td>{{ $reg->district }}</td>
                                 <td>{{ $reg->ward }}</td>
-                                <td>{{ $reg->name }}</td>
+                                <td>
+                                    @foreach ($reg->cods as $cod)
+                                    <span class="badge badge-primary">{{ $cod->name }}</span>
+                                    @endforeach    
+                                </td>
                                 <td width="120">
                                     {!! Form::open(['route' => ['reg.destroy', $reg->id], 'method' => 'delete']) !!}
                                     <div class='btn-group'>

@@ -33,7 +33,7 @@ use Spatie\Permission\Models\Role;
            <div class="card">
             <div class="card-body p-0">
                 <div class="table-responsive">
-                    <table class="table table-bordered" >
+                    <table class="table table-bordered table-sm" >
                         <thead>
                             <tr>
                                 <th scope="row">S/N</th>

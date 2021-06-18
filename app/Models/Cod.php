@@ -14,7 +14,7 @@ class Cod extends Model
     protected $table = 'cods';
 
     public function reg(){
-        return $this->belongsTo(Reg::class);
+        return $this->belongsToMany(Reg::class, 'reg_cods');
     }
 
     public function tod(){

@@ -28,7 +28,7 @@
             <div class="card-body p-0">
                 {{-- <h6>{{ $no_of_users }}</h6> --}}
                 <div class="table-responsive">                       
-                    <table id="example" style="width:100%" class="table table-bordered display">
+                    <table id="example" style="width:100%" class="table table-bordered display table-sm">
                         {{-- <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info"> --}}
                         <thead>
                             <tr>

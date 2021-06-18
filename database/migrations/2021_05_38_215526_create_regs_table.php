@@ -24,11 +24,8 @@ class CreateRegsTable extends Migration
             $table->string('region');
             $table->string('district');
             $table->string('ward');
-            $table->unsignedBigInteger('cod_id');
-            $table->foreign('cod_id')->references('id')->on('cods')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
 
-            
         });
     }
 

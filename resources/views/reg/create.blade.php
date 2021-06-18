@@ -70,7 +70,7 @@ data-ward-url="{{ route('ward') }}" >
                     <!-- Phone number -->
                     <div class="form-group col-sm-6">
                         {!! Form::label('phone', 'Phone Number:') !!}
-                        {!! Form::text('phone', null, ['class' => 'form-control','maxlength' => 255,'placeholder' => 'Phone Number','maxlength' => 255,'required']) !!}
+                        {!! Form::text('phone', null, ['class' => 'form-control','placeholder' => 'Phone Number','maxlength' => 10,'required']) !!}
                     </div>
                     <!-- Region -->
                     <div class="form-group col-sm-6">                    
@@ -93,7 +93,7 @@ data-ward-url="{{ route('ward') }}" >
                    <div class="form-group col-sm-6">            
                         {!! Form::label('Ward', 'Ward:') !!}
                         <select class="form-control" name="ward" id="ward">
-                            <option value="ward">select ward...</option>                 
+                            <option value="">select ward...</option>                 
                         </select>
                     </div> 
                      <!-- Type of disability -->
@@ -241,7 +241,7 @@ $(document).ready(function(){
             success: function(response) {
                    console.log(response);
                     $("#cod").empty();
-                    $("#cod").append('<option value="" selected>-- Select Category of disability --</option>');
+                    $("#cod").append();
                     response.forEach(element=>{
                         console.log(element);
                          $('#cod').append(`<option value="${element['id']}">${element['name']} </option>`);

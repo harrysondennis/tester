@@ -29,7 +29,7 @@ class RegController extends Controller
     public function index()
     {
         // $regs = reg::orderBy('id', 'desc')->get();
-        $regs = DB::table('regs')->join('cods', 'regs.cod_id', '=' , 'cods.id')->select('*')->get();
+        $regs = Reg::all();
        
 
 
@@ -62,29 +62,43 @@ class RegController extends Controller
             'surname' => 'required|max:255',
             'gender' => 'required',
             'dob' => 'required',
-            'phone' => 'required|max:10',
+            'phone' => 'required|min:10|max:10',
         ]);
 
         $region_name = Region::where('region_code' , $request->region)->first();
         $district_name = District::where('district_code' , $request->district)->first();
         $ward_name = Ward::where('ward_code' , $request->ward)->first();
-        // $tod_name = Tod::where('id' , $request->tod)->first();
-        // $cod_name = Cod::where('id' , $request->cod)->first();
+       
         
         
-        $reg = new Reg;
-        $reg->firstname = $request->firstname;
-        $reg->middlename = $request->middlename;
-        $reg->surname = $request->surname;
-        $reg->gender = $request->gender;
-        $reg->dob = $request->dob;
-        $reg->phone = $request->phone;
-        $reg->region = $region_name->name;
-        $reg->district =   (strtolower($district_name->name));
-        $reg->ward =  (strtolower($ward_name->name));
-        $reg->cod_id =  $request->cod;
-        
-        $reg->save();
+        // $reg = new Reg;
+        // $reg->firstname = $request->firstname;
+        // $reg->middlename = $request->middlename;
+        // $reg->surname = $request->surname;
+        // $reg->gender = $request->gender;
+        // $reg->dob = $request->dob;
+        // $reg->phone = $request->phone;
+        // $reg->region = $region_name->name;
+        // $reg->district =   (strtolower($district_name->name));
+        // $reg->ward =  (strtolower($ward_name->name));     
+        // $reg->save();
+        // $reg->cods()->attach($request->cod_id);
+       // return $request->all();
+
+        $reg = Reg::create([
+            'firstname'=>trim($request->firstname),
+            'middlename'=>trim($request->middlename),
+            'surname'=>trim($request->surname),
+            'gender'=>trim($request->gender),
+            'surname'=>trim($request->surname),
+            'dob'=> $request->dob,
+            'phone'=> $request->phone,
+            'region'=> $region_name->name,
+            'district'=> strtolower($district_name->name),
+            'ward'=> strtolower($ward_name->name),
+        ]);
+
+        $reg->cods()->attach($request->cod);
 
         Flash::success(' saved successfully.');
 

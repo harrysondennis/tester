@@ -20,7 +20,7 @@ class Reg extends Model
     protected $guarded = [ ];
 
     public function cods(){
-        return $this->hasMany(Cod::class);
+        return $this->belongsToMany(Cod::class, 'reg_cods');
     }
 
 }
