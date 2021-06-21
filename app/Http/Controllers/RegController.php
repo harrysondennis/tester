@@ -31,9 +31,9 @@ class RegController extends Controller
         // $regs = reg::orderBy('id', 'desc')->get();
         $regs = Reg::all();
        
-
-
-        return view('reg.index')->with('regs', $regs);
+        $no_of_regs = Reg::all()->count();
+        return view('reg.index', compact(['regs','no_of_regs']));
+        // return view('reg.index')->with('regs', $regs);
     }
 
     /**
@@ -122,9 +122,12 @@ class RegController extends Controller
      * @param  \App\Models\Reg  $reg
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reg $reg)
+    public function edit($id)
     {
-        return view('reg.edit')->with('reg', $reg);
+        $regs = Reg::find($id);
+        $regions=Region::all();
+        $data =DB::table("tods")->select('id','name')->get();
+        return view('reg.edit',compact(['regs','regions','data']));
     }
 
     /**
@@ -144,16 +147,28 @@ class RegController extends Controller
             'dob' => 'required',
             'phone' => 'required|max:10',
         ]);
-        
-        $reg->firstname = $request->firstname;
-        $reg->middlename = $request->middlename;
-        $reg->surname = $request->surname;
-        $reg->gender = $request->gender;
-        $reg->dob = $request->dob;
-        $reg->phone = $request->phone;
-        $reg->save();
 
+        $reg->update([
+            'firstname'=>$request->firstname,
+            'middlename'=>$request->middlename,
+            'surname'=>$request->surname,
+            'gender'=>$request->gender,
+            'dob'=>$request->dob,
+            'phone'=>$request->phone,
+            'region'=> $region_name->name,
+            'district'=> strtolower($district_name->name),
+            'ward'=> strtolower($ward_name->name),
+        ]);
+
+        $reg->cods()->sync($request->cod);
         
+        // $reg->firstname = $request->firstname;
+        // $reg->middlename = $request->middlename;
+        // $reg->surname = $request->surname;
+        // $reg->gender = $request->gender;
+        // $reg->dob = $request->dob;
+        // $reg->phone = $request->phone;
+        // $reg->save();
 
         Flash::success('PwD updated successfully.');
 

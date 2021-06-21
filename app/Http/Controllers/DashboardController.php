@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Reg;
+use App\Models\Role;
 
 
 class DashboardController extends Controller
@@ -15,8 +17,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $no_of_roles = Role::all()->count();
         $no_of_users = User::all()->count();
-        return view('dashboard.index', compact(['no_of_users']));
+        $no_of_regs = Reg::all()->count();
+        return view('dashboard.index', compact(['no_of_users', 'no_of_regs', 'no_of_roles']));
     }
 
     /**

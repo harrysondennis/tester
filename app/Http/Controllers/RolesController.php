@@ -21,9 +21,9 @@ class RolesController extends Controller
     {
         $roles = role::orderBy('id', 'desc')->get();
         $permissions=Permission::all();
+        $no_of_roles = Role::all()->count();
 
-
-        return view('roles.index',compact(['roles','permissions']));
+        return view('roles.index',compact(['roles', 'permissions', 'no_of_roles']));
     }
      /**
      * Show the form for creating a new resource.
@@ -71,7 +71,10 @@ class RolesController extends Controller
      */
     public function show(Role $role)
     {
-        return view('roles.show')->with('role', $role);
+        $permissions = Permission::all();
+        $role_permissions = $role->permissions()->get();
+        // return view('roles.show')->with('role', $role);
+        return view('roles.show', compact(['permissions' , 'role', 'role_permissions']));
     }
 
     /**

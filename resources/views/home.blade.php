@@ -23,16 +23,29 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                <p>PEOPLE WITH DISABILITY</p>
+                {{-- <h3>53<sup style="font-size: 20px">%</sup></h3> --}}
+                <h3>{{ $no_of_regs }}</h3>
+                <p> PEOPLE WITH DISABILITY</p>
               </div>
               <div class="icon">
                 <i class="fa fa-wheelchair"></i>
               </div>
             </div>
           </div>
-          
+           <!-- ./col -->
+           <div class="col">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{ $no_of_roles }}</h3>
+
+                <p>ROLES</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-users"></i>
+              </div>
+            </div>
+          </div>
         
 
     </div>

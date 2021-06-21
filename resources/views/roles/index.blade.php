@@ -11,7 +11,7 @@ use Spatie\Permission\Models\Role;
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><i class="fa fa-briefcase">  Roles</i></h1>
+                    <h1><i class="fa fa-users">  Roles</i></h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right"

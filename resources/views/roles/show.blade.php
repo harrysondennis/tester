@@ -24,14 +24,22 @@
             <div class="card-body">
                 <div class="row">
                     <!-- Name Field -->
-                    <div class="col-sm-12">
+                    <div class="form-group col-sm-6">
                         {!! Form::label('id', 'Id:') !!}
                         <p>{{ $role->id }}</p>
                     </div>
                     <!-- Name Field -->
-                    <div class="col-sm-12">
+                    <div class="form-group col-sm-6">
                         {!! Form::label('name', 'Name:') !!}
                         <p>{{ $role->name }}</p>
+                    </div>
+                    <!-- Permission Field -->
+                    <div class="form-group col-sm-6">
+                        {!! Form::label('permission', 'Permission:') !!}                                              
+                            @foreach ($permissions as $permission)
+                            <p value="{{ $permission->id }}" {{ $permission->id=="permission" ? 'selected' : '' }}>{{ $permission->name }}</p>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>

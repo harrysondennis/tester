@@ -16,7 +16,7 @@
 {{-- @role("manager") --}}
 <li class="nav-item">
     <a href="{{ route('roles.index') }}">
-        <button class="btn btn-outline-secondary btn-block col-xs-2 border border-0"><i class="fa fa-briefcase float-left" style="color: white">  ROLES</i></button>
+        <button class="btn btn-outline-secondary btn-block col-xs-2 border border-0"><i class="fa fa-users float-left" style="color: white">  ROLES</i></button>
         <p></p>
     </a>
 </li> 
