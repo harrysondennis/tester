@@ -16,7 +16,7 @@
         @include('adminlte-templates::common.errors')
 
         <div class="card">
-            @foreach ($regs as $reg)
+            {{-- @foreach ($regs as $reg) --}}
             <form action="/reg/{{ $reg->id }}" method="POST">
                 @csrf
                 @method('PATCH')
@@ -103,7 +103,7 @@
                 </div>    
             </form>
 
-            @endforeach
+            {{-- @endforeach --}}
            
         </div>
     </div>

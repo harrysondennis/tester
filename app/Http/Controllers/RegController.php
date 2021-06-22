@@ -124,10 +124,13 @@ class RegController extends Controller
      */
     public function edit($id)
     {
-        $regs = Reg::find($id);
+        $reg = Reg::find($id);
+       
         $regions=Region::all();
         $data =DB::table("tods")->select('id','name')->get();
-        return view('reg.edit',compact(['regs','regions','data']));
+
+        
+        return view('reg.edit',compact('reg','regions','data'));
     }
 
     /**

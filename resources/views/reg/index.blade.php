@@ -64,7 +64,7 @@
                                         <a href="{{ route('reg.show', $reg->id) }}" class='btn btn-default btn-xs'>
                                             <i class="far fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('editreg', $reg->id) }}" class='btn btn-default btn-xs'>
+                                        <a href="/reg/{{$reg->id}}/edit" class='btn btn-default btn-xs'>
                                             <i class="far fa-edit"></i>
                                         </a>
                                         {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}

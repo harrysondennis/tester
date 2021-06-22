@@ -38,7 +38,7 @@ Route::resource('permissions', App\Http\Controllers\PermissionsController::class
 
 Route::resource('/reg', App\Http\Controllers\RegController::class);
 
-Route::get('/regs/{id}', [App\Http\Controllers\RegController::class,"edit"])->name('editreg');
+// Route::get('/regs/{id}', [App\Http\Controllers\RegController::class,"edit"])->name('editreg');
 
 Route::resource('dashboard', App\Http\Controllers\DashboardController::class);
 
