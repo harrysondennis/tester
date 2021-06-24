@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="container">
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -19,18 +20,18 @@
         </div>
     </section>
 
-    <div class="content px-3">
+    {{-- <div class="content px-3"> --}}
 
         @include('flash::message')
 
-        <div class="clearfix"></div>
+        {{-- <div class="clearfix"></div>
            <div class="card">
             <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-sm">
-                        <thead>
+                <div class="table-responsive"> --}}
+                    <table class="hover table table-striped table-bordered" id="my">
+                        <thead class="thead-dark">
                             <tr>
-                                <th scope="row">S/N</th>
+                                <th >S/N</th>
                                 <th>fullname</th>
                                 <th>gender</th>
                                 <th>Date of birth</th>
@@ -39,7 +40,7 @@
                                 <th>District</th>
                                 <th>Ward</th>
                                 <th>category of disability</th>
-                                <th colspan="3">Action</th>
+                                <th >Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,15 +76,28 @@
                         @endforeach
                         </tbody>
                     </table>
-                </div>
-                <div class="card-footer clearfix float-right">
-                <div class="float-right">
-                    
-                </div>
-            </div>
-        </div>
-
-    </div>
+      
 </div>
-
 @endsection
+@section('pagescript')
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+    var result = [];
+           jQuery(document).ready(function($){
+               var table = $('#my').DataTable( {
+                   dom: '<"top"fl>rt<"bottom"p>',
+       
+       
+                   select: {
+                       //style: 'os',
+                       style: 'multi',
+                       selector: 'td:first-child'
+                   },
+       
+                   order: [[ 1, 'asc' ]]
+               });
+           });
+   
+   </script>

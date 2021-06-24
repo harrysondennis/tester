@@ -99,7 +99,7 @@ data-ward-url="{{ route('ward') }}" >
                      <!-- Type of disability -->
                      <div class="form-group col-sm-6">            
                         {!! Form::label('tod', 'Type Of Disability:') !!}
-                        <select class="form-control select2" name="tod[]" data-placeholder="Select Type Of Disability" id="tod" multiple="multiple"class="tod-id" >  
+                        <select class="form-control select2" name="tod[]" data-placeholder="Select Type Of Disability" id="tod" multiple="multiple" class="tod-id" >  
                             @foreach ($data as $data)
                             <option value="{{ $data->id }}">{{ $data->name }}</option>
                             @endforeach

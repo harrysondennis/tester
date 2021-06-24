@@ -17,20 +17,17 @@
         </div>
     </section>
 
-    <div class="content px-3">
+   
 
         @include('flash::message')
 
-        <div class="clearfix"></div>
-           <div class="card">
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-bordered" >
-                        <thead>
+       
+                    <table class="table table-bordered" id="my" >
+                        <thead class="thead-dark">
                             <tr>
                                 <th scope="row">S/N</th>
                                 <th scope="col">Name</th>
-                                <th scope="col" colspan="3">Action</th>
+                                <th scope="col" >Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,15 +52,27 @@
                         @endforeach
                         </tbody>
                     </table>
-                </div>
-                <div class="card-footer clearfix float-right">
-                <div class="float-right">
-                    
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
+    
 
 @endsection
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript">
+    var result = [];
+           jQuery(document).ready(function($){
+               var table = $('#my').DataTable( {
+                   dom: '<"top"fl>rt<"bottom"p>',
+       
+       
+                   select: {
+                       //style: 'os',
+                       style: 'multi',
+                       selector: 'td:first-child'
+                   },
+       
+                   order: [[ 1, 'asc' ]]
+               });
+           });
+   
+   </script>

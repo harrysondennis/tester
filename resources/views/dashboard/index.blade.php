@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container p-3">
+<div class="container ">
     <div class="row">
 
         <div class="col">
@@ -49,5 +49,125 @@
         
 
     </div>
-</div>
+{{-- 
+    <div class="row">
+    <canvas id="canvas" height="100" width="300"></canvas>
+  </div>
+
+
+
+
+
+  <div class='row'>
+    <canvas id="pie-chart" width="800" height="450"></canvas>
+
+  </div>
+  --}}
+
+<div>
+
+
+
+
+  
+
+
+
+
+
 @endsection
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script> --}}
+
+
+{{-- <script>
+
+var year = <?php echo $regin; ?>;
+
+    var user = [1,2,3,4,5];
+
+    var barChartData = {
+
+        labels: year,
+
+        datasets: [{
+
+            label: 'Region',
+
+            backgroundColor: "pink",
+
+            data: user
+
+        }]
+
+    };
+
+
+    window.onload = function() {
+
+        var ctx = document.getElementById("canvas").getContext("2d");
+
+        window.myBar = new Chart(ctx, {
+
+            type: 'bar',
+
+            data: barChartData,
+
+            options: {
+
+                elements: {
+
+                    rectangle: {
+
+                        borderWidth: 2,
+
+                        borderColor: '#c1c1c1',
+
+                        borderSkipped: 'bottom'
+
+                    }
+
+                },
+
+                responsive: true,
+
+                title: {
+
+                    display: true,
+
+                    text: 'Distribution of pwd in Tanzania'
+
+                }
+
+            }
+
+        });
+
+    };
+
+</script> --}}
+
+
+<script>
+ 
+ 
+  new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        data: [2478,5267,734,784,433]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+});
+
+
+
+</script>

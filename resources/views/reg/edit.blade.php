@@ -69,28 +69,42 @@
                     <div class="form-group col-sm-6">                  
                     {!! Form::label('District', 'District:') !!}
                             <select class="form-control" name="district" id="district">
-                                <option value="district">select district...</option>                      
+                                <option value="region">select district...</option>
+                                @foreach (\App\Models\District::all() as $district)
+                                <option value="{{ $district->district_code }}" {{ $district->district_code =="district" ? 'selected' : '' }}>{{ $district->name }}</option>                  
+                                @endforeach
                             </select>
                     </div>    
                     <!-- Ward -->
                     <div class="form-group col-sm-6">            
                             {!! Form::label('Ward', 'Ward:') !!}
                             <select class="form-control" name="ward" id="ward">
-                                <option value="ward">select ward...</option>                 
+                                <option value="ward">select ward...</option>   
+                                @foreach (\App\Models\Ward::all() as $ward)
+                                <option value="{{ $ward->ward_code }}" {{ $ward->ward_code =="ward" ? 'selected' : '' }}>{{ $ward->name }}</option>                  
+                                @endforeach              
                             </select>
                         </div> 
                         <!-- Type of disability -->
                         <div class="form-group col-sm-6">            
                             {!! Form::label('tod', 'Type Of Disability:') !!}
-                            <select class="form-control" name="tod" id="tod">
-                                <option value="">select Type Of Disability...</option>                 
+                            <select class="form-control select2" name="tod[]" data-placeholder="Select Type Of Disability" id="tod" multiple="multiple" class="tod-id" >  
+                                <option value="">select Type Of Disability...</option>  
+                                @foreach (\App\Models\Tod::all() as $tod)
+                                <option value="{{ $tod->id }}" {{ $tod->id =="tod" ? 'selected' : '' }}>{{ $tod->name }}</option>                  
+                                @endforeach 
+                                
+
                             </select>
                         </div>  
                         <!-- category of disability -->
                         <div class="form-group col-sm-6">            
                             {!! Form::label('cod', 'Category Of Disability:') !!}
-                            <select class="form-control" name="cod" id="cod">
-                                <option value="">Select Category Of Disability...</option>                 
+                            <select class="form-control  select2" data-placeholder="Select Category Of Disability" name="cod[]" id="cod" multiple="multiple">   
+                                <option value="">Select Category Of Disability...</option> 
+                                @foreach (\App\Models\Cod::all() as $cod)   
+                                <option value="{{ $cod->id }}" {{ $cod->id =="cod" ? 'selected' : '' }}>{{ $cod->name }}</option>               
+                                @endforeach 
                             </select>
                         </div>
 
@@ -103,54 +117,20 @@
                 </div>    
             </form>
 
-            {{-- @endforeach --}}
+          
            
         </div>
     </div>
 
 @endsection
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-<script>
-   
-$(document).ready(function(){
-    $("#region").on('change',function () {
-        var url = $("#selectform").attr("data-district-url");
-        $("#district").empty();
-        var data = $(this).val();
-        console.log(data);
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: {
-                'dist': data
-                
-            },
-            success: function (response) {
-              
-               console.log("");
-                $("#district").empty();
-                $("#district").append('<option value="">-- Select District --</option>');
-                response.forEach(element=>{
-                     $('#district').append(`<option value="${element['district_code']}">${element['name']} </option>`);
-                });
-            }
-        });
-    })
-});
-</script>
-
 
 <script>
    
     $(document).ready(function(){
-        $("#district").on('change',function () {
-            var url = $("#selectform").attr("data-ward-url");
-            $("#ward").empty();
+        $("#region").on('change',function () {
+            var url = $("#selectform").attr("data-district-url");
+            $("#district").empty();
             var data = $(this).val();
             console.log(data);
             $.ajaxSetup({
@@ -162,80 +142,115 @@ $(document).ready(function(){
                 type: "POST",
                 url: url,
                 data: {
-                    'ward': data
+                    'dist': data
                     
                 },
                 success: function (response) {
                   
-               
-                    $("#ward").empty();
-                    $("#ward").append('<option value="">-- Select Ward --</option>');
+                   console.log("");
+                    $("#district").empty();
+                    $("#district").append('<option value="">-- Select District --</option>');
                     response.forEach(element=>{
-                         $('#ward').append(`<option value="${element['ward_code']}">${element['name']} </option>`);
+                         $('#district').append(`<option value="${element['district_code']}">${element['name']} </option>`);
                     });
                 }
             });
         })
     });
     </script>
-
     
-
-   <script>
-   
-    $(document).ready(function(){
-        let q
-        $("#tod").on('change',function () {
-            var url = $("#selectform").attr("data-district-cod");
-            $("#cod").empty();
-            var data = $(this).val();
-            //console.log(data);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-        //     $.ajax({
-        //         type: "POST",
-        //         url: url,
-        //         data: {
-        //             'cod_code': data
+    
+    <script>
+       
+        $(document).ready(function(){
+            $("#district").on('change',function () {
+                var url = $("#selectform").attr("data-ward-url");
+                $("#ward").empty();
+                var data = $(this).val();
+                console.log(data);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        'ward': data
+                        
+                    },
+                    success: function (response) {
+                      
                    
-        //         },
-        //         success: function (response) {
-                 
-        //            console.log(response);
-        //             $("#cod").empty();
-        //             $("#cod").append('<option value="">-- Select Category of disability --</option>');
-        //             response.forEach(element=>{
-        //                  $('#cod').append(`<option value="${element['id']}">${element['name']} </option>`);
-        //             });
-        //         }
-        //    });
-
-        //  $.get('/cod',function(data){
-        //    console.log(data);
-        //  })
-
-        $.ajax({
-            url: "/cod",
-            type: "get", //send it through get method
-            data: { 
-                data: data, 
-            },
-            success: function(response) {
-                   console.log(response);
-                    $("#cod").empty();
-                    $("#cod").append();
-                    response.forEach(element=>{
-                        console.log(element);
-                         $('#cod').append(`<option value="${element['id']}">${element['name']} </option>`);
-                    });
-            },
-            error: function(xhr) {
-                console.log('error');
-            }
-            });
-        })
-    });
-     </script>
+                        $("#ward").empty();
+                        $("#ward").append('<option value="">-- Select Ward --</option>');
+                        response.forEach(element=>{
+                             $('#ward').append(`<option value="${element['ward_code']}">${element['name']} </option>`);
+                        });
+                    }
+                });
+            })
+        });
+        </script>
+    
+        
+    
+       <script>
+       
+        $(document).ready(function(){
+            let q
+            $("#tod").on('change',function () {
+                var url = $("#selectform").attr("data-district-cod");
+                $("#cod").empty();
+                var data = $(this).val();
+                //console.log(data);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+            //     $.ajax({
+            //         type: "POST",
+            //         url: url,
+            //         data: {
+            //             'cod_code': data
+                       
+            //         },
+            //         success: function (response) {
+                     
+            //            console.log(response);
+            //             $("#cod").empty();
+            //             $("#cod").append('<option value="">-- Select Category of disability --</option>');
+            //             response.forEach(element=>{
+            //                  $('#cod').append(`<option value="${element['id']}">${element['name']} </option>`);
+            //             });
+            //         }
+            //    });
+    
+            //  $.get('/cod',function(data){
+            //    console.log(data);
+            //  })
+    
+            $.ajax({
+                url: "/cod",
+                type: "get", //send it through get method
+                data: { 
+                    data: data, 
+                },
+                success: function(response) {
+                       console.log(response);
+                        $("#cod").empty();
+                        $("#cod").append();
+                        response.forEach(element=>{
+                            console.log(element);
+                             $('#cod').append(`<option value="${element['id']}">${element['name']} </option>`);
+                        });
+                },
+                error: function(xhr) {
+                    console.log('error');
+                }
+                });
+            })
+        });
+         </script>
