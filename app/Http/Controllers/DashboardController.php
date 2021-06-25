@@ -43,7 +43,7 @@ $regin=json_encode($regions);
         $no_of_roles = Role::all()->count();
         $no_of_users = User::all()->count();
         $no_of_regs = Reg::all()->count();
-        return view('dashboard.a',compact(['no_of_users','no_of_regs','regin','male','female','no_of_roles']));
+        return view('dashboard.index',compact(['no_of_users','no_of_regs','regin','male','female','no_of_roles']));
     }
 
     /**
