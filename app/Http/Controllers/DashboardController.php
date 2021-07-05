@@ -17,12 +17,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-
-    
-    
             $year = ['2015','2016','2017','2018','2019','2020'];
-    
-    
            $female=DB::table('regs')
            ->select('gender')->where('gender','female')->count();
            $male=DB::table('regs')
@@ -31,14 +26,12 @@ class DashboardController extends Controller
     $region=DB::table('regions')->select('name')->get();
     
 
-foreach($region as $reg)
-{
-$regions[]=$reg->name;
-}
+        foreach($region as $reg)
+        {
+        $regions[]=$reg->name;
+        }
 
-$regin=json_encode($regions);
-
-
+        $regin=json_encode($regions);
 
         $no_of_roles = Role::all()->count();
         $no_of_users = User::all()->count();
