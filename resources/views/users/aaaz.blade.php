@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
  crossorigin="anonymous"/>
  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
@@ -112,120 +113,134 @@
 <div class="content-wrapper">
     <section class="content">
         @yield('content')
-        <div class="col-sm-6">
-        <div class="col-sm-6">
-            <a class="btn btn-primary float-right"
-               href="{{ route('permissions.create') }}">
-               <i class="fa fa-plus">Add New Permission</i>
-            </a>
-        </div>
-    </div>
-         @include('flash::message')
+        
 
-        <center><h3 style="color: green;"><strong>PERMISSIONS MANAGEMENT </strong></h3></center>
-        <hr>
+
+
+
+<div class="container">
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Tiger Nixon</td>
+            <td>System Architect</td>
+            <td>Edinburgh</td>
+            <td>61</td>
+            <td>2011/04/25</td>
+            <td>$320,800</td>
+        </tr>
+        <tr>
+            <td>Garrett Winters</td>
+            <td>Accountant</td>
+            <td>Tokyo</td>
+            <td>63</td>
+            <td>2011/07/25</td>
+            <td>$170,750</td>
+        </tr>
+        <tr>
+            <td>Ashton Cox</td>
+            <td>Junior Technical Author</td>
+            <td>San Francisco</td>
+            <td>66</td>
+            <td>2009/01/12</td>
+            <td>$86,000</td>
+        </tr>
+        <tr>
+            <td>Cedric Kelly</td>
+            <td>Senior Javascript Developer</td>
+            <td>Edinburgh</td>
+            <td>22</td>
+            <td>2012/03/29</td>
+            <td>$433,060</td>
+        </tr>
    
-<table id="my" class="display" style="width:100%">
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </tfoot>
+</table>
+</div>
+    </section>
+</div>
 
-       
+<!-- Main Footer -->
+<footer class="main-footer">
+    <strong>Copyright &copy; 2021 <a href="#">PwDRS</a>.</strong> All rights reserved.
+</footer>
+</div>
 
-       
-                    <table class="table table-bordered" id="my" >
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="row">S/N</th>
-                                <th scope="col">Name</th>
-                                <th scope="col" >Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($permissions as $permission)
-                            <tr>
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $permission->name }}</td>
-                                <td width="120">
-                                    {!! Form::open(['route' => ['permissions.destroy', $permission->id], 'method' => 'delete']) !!}
-                                    <div class='btn-group'>
-                                        <a href="{{ route('permissions.show', $permission->id) }}" class='btn btn-default btn-xs'>
-                                            <i class="far fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route('permissions.edit', $permission->id) }}" class='btn btn-default btn-xs'>
-                                            <i class="far fa-edit"></i>
-                                        </a>
-                                        {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                                    </div>
-                                    {!! Form::close() !!}
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-    
 
-                </section>
-            </div>
-            
-            <!-- Main Footer -->
-            <footer class="main-footer">
-                <strong>Copyright &copy; 2021 <a href="#">PwDRS</a>.</strong> All rights reserved.
-            </footer>
-            </div>
-            
-            
-            
-              </body> 
-            
-            
-            
-            
-            
-            <script>
-            $(function () {
-                bsCustomFileInput.init();
-            });
-            
-            $("input[data-bootstrap-switch]").each(function(){
-                $(this).bootstrapSwitch('state', $(this).prop('checked'));
-            });
-            
-            $('.select2').select2();
-            </script>
-            
-            <script>
-            $("#position").select2({
-            allowClear:true,
-            placeholder: 'Position'
-            });
-            </script>
-            
-            
-            
-            @yield('third_party_scripts')
-            
-            @stack('page_scripts')
-            
-            
-            <script src=https://code.jquery.com/jquery-3.5.1.js></script>
-            <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> 
-             <script src=" https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-            <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
-            <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
-            
-            
-            
-            
-            <script type="text/javascript">
-            $(document).ready(function() {
-                $('#my').DataTable( {
-                    dom: 'Bfrtip',
-                    buttons: [
-                         'print'
-                    ]
-                } );
-            } );
-               
-               </script>
-            
+
+  </body> 
+
+
+
+
+
+<script>
+$(function () {
+    bsCustomFileInput.init();
+});
+
+$("input[data-bootstrap-switch]").each(function(){
+    $(this).bootstrapSwitch('state', $(this).prop('checked'));
+});
+
+$('.select2').select2();
+</script>
+
+<script>
+$("#position").select2({
+allowClear:true,
+placeholder: 'Position'
+});
+</script>
+
+
+
+@yield('third_party_scripts')
+
+@stack('page_scripts')
+
+
+<script src=https://code.jquery.com/jquery-3.5.1.js></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script> 
+ <script src=" https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+             'print'
+        ]
+    } );
+} );
+   
+   </script>

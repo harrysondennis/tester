@@ -3,6 +3,8 @@
 @section('content')
 
 <div class="container ">
+  <center><h3 style="color: green;"><strong>DASHBOARD </strong></h3></center>
+        <hr>
     <div class="row">
 
         <div class="col">
@@ -196,48 +198,25 @@
       var chart = am4core.create("tanzania", am4charts.XYChart);
       chart.scrollbarX = new am4core.Scrollbar();
       
+
+      var data=[];
+            var dataz = <?php echo json_encode($region, JSON_HEX_TAG); ?>;
+            console.log(dataz);
+            for(let index=0;index<dataz.length;index++){
+                 ///  console.log(dataz[index].region);
+                let individual_data={"region": dataz[index].region, "visits": dataz[index].visits};
+                data.push(individual_data);
+
+
+            }
+          
+
       // Add data
-      chart.data = [{
-        "country": "USA",
-        "visits": 3025
-      }, {
-        "country": "China",
-        "visits": 1882
-      }, {
-        "country": "Japan",
-        "visits": 1809
-      }, {
-        "country": "Germany",
-        "visits": 1322
-      }, {
-        "country": "UK",
-        "visits": 1122
-      }, {
-        "country": "France",
-        "visits": 1114
-      }, {
-        "country": "India",
-        "visits": 984
-      }, {
-        "country": "Spain",
-        "visits": 711
-      }, {
-        "country": "Netherlands",
-        "visits": 665
-      }, {
-        "country": "Russia",
-        "visits": 580
-      }, {
-        "country": "South Korea",
-        "visits": 443
-      }, {
-        "country": "Canada",
-        "visits": 441
-      }];
+      chart.data =data;
       
       // Create axes
       var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-      categoryAxis.dataFields.category = "country";
+      categoryAxis.dataFields.category = "region";
       categoryAxis.renderer.grid.template.location = 0;
       categoryAxis.renderer.minGridDistance = 30;
       categoryAxis.renderer.labels.template.horizontalCenter = "right";
@@ -253,7 +232,7 @@
       var series = chart.series.push(new am4charts.ColumnSeries());
       series.sequencedInterpolation = true;
       series.dataFields.valueY = "visits";
-      series.dataFields.categoryX = "country";
+      series.dataFields.categoryX = "region";
       series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
       series.columns.template.strokeWidth = 0;
       
