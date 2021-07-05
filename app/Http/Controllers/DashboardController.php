@@ -45,7 +45,7 @@ class DashboardController extends Controller
         $no_of_regs = Reg::all()->count();
 
 
-return view('users.aaaz');
+//return view('users.aaaz');
         return view('dashboard.index',compact(['no_of_users','no_of_regs','male','female','no_of_roles','region']));
     }
 
