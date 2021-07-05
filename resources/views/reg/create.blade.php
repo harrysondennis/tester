@@ -148,6 +148,7 @@ $(document).ready(function(){
             success: function (response) {
               
                console.log("");
+               console.log(response);
                 $("#district").empty();
                 $("#district").append('<option value="">-- Select District --</option>');
                 response.forEach(element=>{
@@ -242,7 +243,7 @@ $(document).ready(function(){
                    console.log(response);
                     $("#cod").empty();
                     $("#cod").append();
-                    response.forEach(element=>{
+                    response.forEac(element=>{
                         console.log(element);
                          $('#cod').append(`<option value="${element['id']}">${element['name']} </option>`);
                     });

@@ -23,20 +23,26 @@ class DashboardController extends Controller
            $male=DB::table('regs')
            ->select('gender')->where('gender','male')->count();
           
-    $region=DB::table('regions')->select('name')->get();
+    $region=DB::table('regs')->selectRaw('region , count(*) AS visits')->groupby('region')->get();
     
 
-        foreach($region as $reg)
-        {
-        $regions[]=$reg->name;
-        }
+    // $reg=DB::table('tods')
+    //         ->join('cods', 'tods.id', '=', 'cods.tod_id')
+    //         ->join('reg_cods', 'cods.tod_id', '=', 'reg_cods.cod_id')
+    //         ->selectRaw('tod_id ,cod_id,count(regs_cods.cod_id) AS none ')
+    //         ->groupBy('tod_id ,cod_id')
+    //         ->get();
+    // return $reg;
 
-        $regin=json_encode($regions);
+        $region=json_encode($region);
 
         $no_of_roles = Role::all()->count();
         $no_of_users = User::all()->count();
         $no_of_regs = Reg::all()->count();
-        return view('dashboard.index',compact(['no_of_users','no_of_regs','regin','male','female','no_of_roles']));
+
+
+// return view('users.aaaz');
+        return view('dashboard.index',compact(['no_of_users','no_of_regs','male','female','no_of_roles','region']));
     }
 
     /**
