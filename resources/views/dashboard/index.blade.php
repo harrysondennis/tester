@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container ">
-  <center><h3 style="color: green;"><strong>DASHBOARD </strong></h3></center>
+  <center><h3 style="color: rgb(3, 19, 39);"><strong>DASHBOARD </strong></h3></center>
         <hr>
     <div class="row">
 
@@ -54,35 +54,42 @@
 
 
 
-    <div class="row">
-        <div class="col">
-       <div id="chartdiv"></div>
-      </div>
-      
-        <div class="col">
+<div class="row">
+  <div class="col-sm-6">
+  <div class="card">
+    <h5 class="card-header">MALE AND FEMALE PWD</h5>
+    <div class="card-body">
+      <div class="col">
+        <div id="chartdiv"></div>
+       </div>
+    </div>
+  </div>
+  </div>
 
+  <div class="col-sm-6">
+    <div class="card">
+      <h5 class="card-header">TYPES OF DISABILITY </h5>
+      <div class="card-body">
+        <div class="col">
           <div id="chart"></div>
-
-
-
         </div>
-
-<div class= "row">
-
-
-  <div id="tanzania"  style="
-    width: 100%;
-    height: 500px;
-  
-  "></div>
-</div>
-
-
-
-
-
-
       </div>
+    </div>
+    </div>
+
+    {{-- <div class="col">
+     <div id="chartdiv"></div>
+    </div>
+
+    <div class="col">
+      <div id="chart"></div>
+    </div> --}}
+    <div class= "row">
+      <div id="tanzania" style="width: 100%; height: 500px;"></div>
+    </div>
+ </div>
+
+ 
 
 
 

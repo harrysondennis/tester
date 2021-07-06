@@ -113,12 +113,20 @@
     <section class="content">
         @yield('content')
         
-
-        <center><h3 style="color: green;"><strong>USERS MANAGEMENT </strong></h3></center>
+        <center><h3 style="color: rgb(3, 19, 39);"><strong>PEOPLE WITH DISABILITY MANAGEMENT </strong></h3></center>
         <hr>
-   
-                    <table class="display" id="my">
-                        <thead >
+        @include('flash::message')
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <a class="btn btn-primary float-none"
+                href="{{ route('reg.create') }}">
+                <i class="fa fa-plus"> Register </i>
+                </a>
+            </div>
+        </div>
+<br>
+<table id="my" class="display table table-bordered" style="width:100%">
+                        <thead class="thead-dark">
                             <tr>
                                 <th >S/N</th>
                                 <th>fullname</th>

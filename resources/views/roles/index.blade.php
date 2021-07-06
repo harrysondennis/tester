@@ -122,9 +122,19 @@ crossorigin="anonymous"/>
    <section class="content">
        @yield('content')
 
-<center><h3 style="color: green;"><strong>ROLES MANAGEMENT </strong></h3></center>
+<center><h3 style="color: rgb(3, 19, 39);"><strong>ROLES MANAGEMENT </strong></h3></center>
         <hr>
-    <table class="display"  id="my">
+        @include('flash::message')
+        <div class="col-sm-6">
+            <div class="col-sm-6">
+                <a class="btn btn-primary float-none"
+                    href="{{ route('roles.create') }}">
+                    <i class="fa fa-plus">Add New role</i>
+                </a>
+            </div>
+        </div>
+<br>
+    <table class="display table table-bordered"  id="my">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">S/N</th>
