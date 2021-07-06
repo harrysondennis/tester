@@ -55,10 +55,10 @@ class UsersController extends Controller
         ]);
         $x = $request->role;
         $user = new User;
-        $user->firstname = $request->firstname;
-        $user->middlename = $request->middlename;
-        $user->surname = $request->surname;
-        $user->email = $request->email;
+        $user->firstname = trim(str_replace(' ', '', $request->firstname));
+        $user->middlename = trim(str_replace(' ', '', $request->middlename));
+        $user->surname = trim(str_replace(' ', '', $request->surname));
+        $user->email = trim(str_replace(' ', '', $request->email));
         $user->password = Hash::make(strtoupper(trim(str_replace(' ', '', $request->surname))));
         $user->status = "active";
         $user->save();

@@ -31,13 +31,19 @@
                     <!-- Name Field -->
                     <div class="col-sm-12">
                         {!! Form::label('name', 'Name:') !!}
-                        <p>{{ $user->name }}</p>
+                        <p>{{ $user->firstname }} {{ $user->middlename }} {{ $user->surname }}</p>
                     </div>
 
                     <!-- Email Field -->
                     <div class="col-sm-12">
                         {!! Form::label('email', 'Email:') !!}
                         <p>{{ $user->email }}</p>
+                    </div>
+                    <div class="col-sm-12">
+                        {!! Form::label('role', 'Role:') !!}
+                        <p>@foreach($user->roles as $role)
+                            <span class="badge badge-primary">{{ $role->name ?? '-'}}</span>
+                            @endforeach</p>
                     </div>
                 </div>
             </div>

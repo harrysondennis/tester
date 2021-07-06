@@ -230,16 +230,28 @@ placeholder: 'Position'
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
-
-
-
-
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
+            
+            
+            
 <script type="text/javascript">
 $(document).ready(function() {
     $('#my').DataTable( {
         dom: 'Bfrtip',
         buttons: [
-             'print'
+            {
+    extend: 'print',
+    messageTop: 'This is the list of roles',
+    exportOptions: {
+        columns: ':visible'
+    }
+},
+'colvis'
+],
+columnDefs: [ {
+targets: -1,
+visible: false
+}
         ]
     } );
 } );

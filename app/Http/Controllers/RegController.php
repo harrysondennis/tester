@@ -86,11 +86,11 @@ class RegController extends Controller
        // return $request->all();
 
         $reg = Reg::create([
-            'firstname'=>trim($request->firstname),
-            'middlename'=>trim($request->middlename),
-            'surname'=>trim($request->surname),
-            'gender'=>trim($request->gender),
-            'surname'=>trim($request->surname),
+            'firstname'=>trim(str_replace(' ', '', $request->firstname)),
+            'middlename'=>trim(str_replace(' ', '', $request->middlename)),
+            'surname'=>trim(str_replace(' ', '', $request->surname)),
+            'gender'=>($request->gender),
+            'surname'=>trim(str_replace(' ', '', $request->surname)),
             'dob'=> $request->dob,
             'phone'=> $request->phone,
             'region'=> $region_name->name,
