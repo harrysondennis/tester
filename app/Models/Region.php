@@ -16,4 +16,10 @@ class Region extends Model
      * @var array
      */
 
+
+
+     public function districts(){
+         return $this->hasMany(District::class);
+     }
+
 }

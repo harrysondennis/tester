@@ -61,17 +61,20 @@
                         <select class="form-control" name="region" id="region">
                             <option value="region">select region...</option>
                             @foreach (\App\Models\Region::all() as $region)
-                            <option value="{{ $region->region_code }}" {{ $region->region_code=="region" ? 'selected' : '' }}>{{ $region->name }}</option>
+                            <option value="{{ $region->name }}" {{ $region->name==$reg->region ? 'selected' : '' }}>{{ $region->name }}</option>
                             @endforeach
                         </select>
                     </div> 
+
+                    {{-- {{ $reg->district }} --}}
                     <!-- District -->
                     <div class="form-group col-sm-6">                  
                     {!! Form::label('District', 'District:') !!}
                             <select class="form-control" name="district" id="district">
                                 <option value="region">select district...</option>
                                 @foreach (\App\Models\District::all() as $district)
-                                <option value="{{ $district->district_code }}" {{ $district->district_code =="district" ? 'selected' : '' }}>{{ $district->name }}</option>                  
+                                {{-- {{ $district->name }} --}}
+                                <option value="{{ $district->name }}" {{$district->name==$reg->district ? 'selected' : '' }}>{{ $district->name }}</option>                  
                                 @endforeach
                             </select>
                     </div>    
@@ -81,17 +84,26 @@
                             <select class="form-control" name="ward" id="ward">
                                 <option value="ward">select ward...</option>   
                                 @foreach (\App\Models\Ward::all() as $ward)
-                                <option value="{{ $ward->ward_code }}" {{ $ward->ward_code =="ward" ? 'selected' : '' }}>{{ $ward->name }}</option>                  
+                                <option value="{{ $ward->name }}" {{ $ward->name==$reg->ward ? 'selected' : '' }}>{{ $ward->name }}</option>                  
                                 @endforeach              
                             </select>
                         </div> 
+
+
                         <!-- Type of disability -->
                         <div class="form-group col-sm-6">            
                             {!! Form::label('tod', 'Type Of Disability:') !!}
                             <select class="form-control select2" name="tod[]" data-placeholder="Select Type Of Disability" id="tod" multiple="multiple" class="tod-id" >  
                                 <option value="">select Type Of Disability...</option>  
                                 @foreach (\App\Models\Tod::all() as $tod)
-                                <option value="{{ $tod->id }}" {{ $tod->id =="tod" ? 'selected' : '' }}>{{ $tod->name }}</option>                  
+                                    @foreach ($reg->cods as $a)
+                                        <option value="{{ $tod->id }}"
+                                            @foreach ($tod->cods as $c)
+                                            {{ $c->id == $a->id ? 'selected' : ''}} 
+                                            @endforeach 
+                                        >{{ $tod->name }}</option>                  
+                                    
+                                    @endforeach
                                 @endforeach 
                                 
 
@@ -103,7 +115,11 @@
                             <select class="form-control  select2" data-placeholder="Select Category Of Disability" name="cod[]" id="cod" multiple="multiple">   
                                 <option value="">Select Category Of Disability...</option> 
                                 @foreach (\App\Models\Cod::all() as $cod)   
-                                <option value="{{ $cod->id }}" {{ $cod->id =="cod" ? 'selected' : '' }}>{{ $cod->name }}</option>               
+                                <option value="{{ $cod->id }}"
+                                    @foreach ($reg->cods as $a)
+                                            {{ $cod->id==$a->id ? 'selected' : ''}}    
+                                    @endforeach
+                                    >{{ $cod->name }}</option>               
                                 @endforeach 
                             </select>
                         </div>

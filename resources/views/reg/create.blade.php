@@ -78,7 +78,7 @@ data-ward-url="{{ route('ward') }}" >
                        <select class="form-control" name="region" id="region">
                            <option value="region">select region...</option>
                            @foreach ($regions as $region)
-                           <option value="{{ $region->region_code }}">{{ $region->name }}</option>
+                           <option value="{{ $region->id }}">{{ $region->name }}</option>
                            @endforeach
                        </select>
                    </div> 

@@ -52,6 +52,7 @@ class UsersController extends Controller
             'surname' => 'required|max:255',
             'middlename' => 'required|max:255',
             'email' => 'required|unique:users|max:255',
+            'role' => 'required',
         ]);
         $x = $request->role;
         $user = new User;

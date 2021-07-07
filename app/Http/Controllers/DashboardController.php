@@ -34,7 +34,7 @@ class DashboardController extends Controller
     //         ->get();
     // return $reg;
 
-        $region=json_encode($region);
+     //   $region=json_encode($region);
 
         $no_of_roles = Role::all()->count();
         $no_of_users = User::all()->count();

@@ -63,6 +63,10 @@ class RegController extends Controller
             'gender' => 'required',
             'dob' => 'required',
             'phone' => 'required|min:10|max:10',
+            'region' => 'required',
+            'district' => 'required',
+            'ward' => 'required',
+            'cod' => 'required',
         ]);
 
         $region_name = Region::where('region_code' , $request->region)->first();
