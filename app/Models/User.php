@@ -52,5 +52,9 @@ class User extends Authenticatable
             // default:
 
         }
-    }  
+    } 
+    
+    public function regs(){
+        return $this->hasMany(Reg::class);
+    }
 }

@@ -61,7 +61,7 @@
                         <select class="form-control" name="region" id="region">
                             <option value="region">select region...</option>
                             @foreach (\App\Models\Region::all() as $region)
-                            <option value="{{ $region->name }}" {{ $region->name==$reg->region ? 'selected' : '' }}>{{ $region->name }}</option>
+                            <option value="{{ $region->region_code }}" {{ $region->name==$reg->region ? 'selected' : '' }}>{{ $region->name }}</option>
                             @endforeach
                         </select>
                     </div> 
@@ -74,7 +74,7 @@
                                 <option value="region">select district...</option>
                                 @foreach (\App\Models\District::all() as $district)
                                 {{-- {{ $district->name }} --}}
-                                <option value="{{ $district->name }}" {{$district->name==$reg->district ? 'selected' : '' }}>{{ $district->name }}</option>                  
+                                <option value="{{ $district->district_code }}" {{$district->name==$reg->district ? 'selected' : '' }}>{{ $district->name }}</option>                  
                                 @endforeach
                             </select>
                     </div>    
@@ -84,7 +84,7 @@
                             <select class="form-control" name="ward" id="ward">
                                 <option value="ward">select ward...</option>   
                                 @foreach (\App\Models\Ward::all() as $ward)
-                                <option value="{{ $ward->name }}" {{ $ward->name==$reg->ward ? 'selected' : '' }}>{{ $ward->name }}</option>                  
+                                <option value="{{ $ward->ward_code }}" {{ $ward->name==$reg->ward ? 'selected' : '' }}>{{ $ward->name }}</option>                  
                                 @endforeach              
                             </select>
                         </div> 

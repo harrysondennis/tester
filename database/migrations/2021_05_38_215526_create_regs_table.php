@@ -25,7 +25,8 @@ class CreateRegsTable extends Migration
             $table->string('district');
             $table->string('ward');
             $table->timestamps();
-
+            $table->unsignedBigInteger('user_id')->Nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

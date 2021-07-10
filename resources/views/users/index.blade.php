@@ -146,6 +146,7 @@
                 <td>{{ $user->middlename }}</td>
                 <td>{{ $user->surname }}</td>
                 <td>{{ $user->email }}</td>
+                
             <td>
                 @foreach($user->roles as $role)
                 <span class="badge badge-primary">{{ $role->name ?? '-'}}</span>

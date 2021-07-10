@@ -78,7 +78,7 @@ data-ward-url="{{ route('ward') }}" >
                        <select class="form-control" name="region" id="region">
                            <option value="region">select region...</option>
                            @foreach ($regions as $region)
-                           <option value="{{ $region->id }}">{{ $region->name }}</option>
+                           <option value="{{ $region->region_code }}">{{ $region->name }}</option>
                            @endforeach
                        </select>
                    </div> 
@@ -243,7 +243,7 @@ $(document).ready(function(){
                    console.log(response);
                     $("#cod").empty();
                     $("#cod").append();
-                    response.forEac(element=>{
+                    response.forEach(element=>{
                         console.log(element);
                          $('#cod').append(`<option value="${element['id']}">${element['name']} </option>`);
                     });

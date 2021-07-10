@@ -23,4 +23,7 @@ class Reg extends Model
         return $this->belongsToMany(Cod::class, 'reg_cods');
     }
 
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reg;
+use Auth;
 
 use App\Models\Region;
 use App\Models\District;
@@ -28,9 +29,16 @@ class RegController extends Controller
      */
     public function index()
     {
-        // $regs = reg::orderBy('id', 'desc')->get();
+         $regs = reg::orderBy('id', 'asc')->get();
+
+        //return Auth::user()->id;
+        if(Auth::user()->roles->where('name','public service provider')->count()>0){
+
+            $regs=Reg::where('user_id',Auth::user()->id)->get();
+        }
+        else{
         $regs = Reg::all();
-       
+        }
         $no_of_regs = Reg::all()->count();
         return view('reg.index', compact(['regs','no_of_regs']));
         // return view('reg.index')->with('regs', $regs);
@@ -74,34 +82,22 @@ class RegController extends Controller
         $ward_name = Ward::where('ward_code' , $request->ward)->first();
        
         
-        
-        // $reg = new Reg;
-        // $reg->firstname = $request->firstname;
-        // $reg->middlename = $request->middlename;
-        // $reg->surname = $request->surname;
-        // $reg->gender = $request->gender;
-        // $reg->dob = $request->dob;
-        // $reg->phone = $request->phone;
-        // $reg->region = $region_name->name;
-        // $reg->district =   (strtolower($district_name->name));
-        // $reg->ward =  (strtolower($ward_name->name));     
-        // $reg->save();
-        // $reg->cods()->attach($request->cod_id);
-       // return $request->all();
+
 
         $reg = Reg::create([
             'firstname'=>trim(str_replace(' ', '', $request->firstname)),
             'middlename'=>trim(str_replace(' ', '', $request->middlename)),
             'surname'=>trim(str_replace(' ', '', $request->surname)),
             'gender'=>($request->gender),
-            'surname'=>trim(str_replace(' ', '', $request->surname)),
             'dob'=> $request->dob,
             'phone'=> $request->phone,
             'region'=> $region_name->name,
-            'district'=> strtolower($district_name->name),
-            'ward'=> strtolower($ward_name->name),
+            'district'=> $district_name->name,
+            'ward'=> $ward_name->name,
+            'user_id'=> Auth::user()->id,
         ]);
-
+        
+        // $reg->user()->attach(Auth::user()->id);
         $reg->cods()->attach($request->cod);
 
         Flash::success(' saved successfully.');
@@ -155,6 +151,10 @@ class RegController extends Controller
             'phone' => 'required|max:10',
         ]);
 
+        $region_name = Region::where('region_code' , $request->region)->first();
+        $district_name = District::where('district_code' , $request->district)->first();
+        $ward_name = Ward::where('ward_code' , $request->ward)->first();
+
         $reg->update([
             'firstname'=>$request->firstname,
             'middlename'=>$request->middlename,
@@ -163,8 +163,8 @@ class RegController extends Controller
             'dob'=>$request->dob,
             'phone'=>$request->phone,
             'region'=> $region_name->name,
-            'district'=> strtolower($district_name->name),
-            'ward'=> strtolower($ward_name->name),
+            'district'=> $district_name->name,
+            'ward'=> $ward_name->name,
         ]);
 
         $reg->cods()->sync($request->cod);
